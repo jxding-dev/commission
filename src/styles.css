@@ -237,8 +237,9 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
-  backdrop-filter: saturate(1.05) blur(10px);
+  /* 불투명 배경: backdrop-filter는 fixed 드로어의 컨테이닝 블록을 만들어
+     드로어가 헤더 높이에 갇히므로 사용하지 않는다. */
+  background: var(--color-bg);
   border-bottom: var(--border);
 }
 
@@ -318,6 +319,121 @@ h3 {
 .site-nav__link .ext {
   font-size: 0.72em;
   color: var(--color-mint); /* 외부 링크 표식 — 민트 보조 강조 */
+}
+
+/* ---------- 5.3 모바일 사이드 드로어 내비 ----------
+   기본(데스크톱/노-JS)은 인라인 메뉴. JS가 켜지면(html.nav-js) 모바일에서만
+   햄버거 + 오른쪽 드로어로 전환한다. JS 미동작 시엔 인라인 메뉴가 그대로 노출된다. */
+.nav-toggle,
+.nav-close {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 47.99em) {
+  :root.nav-js .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-ink);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease);
+  }
+
+  :root.nav-js .nav-toggle:hover {
+    background: var(--color-surface-2);
+  }
+
+  /* 드로어 패널 */
+  :root.nav-js .site-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(82vw, 300px);
+    background: var(--color-surface);
+    box-shadow: -12px 0 55px rgba(17, 17, 17, 0.16);
+    padding: 4.75rem 1.15rem 2rem;
+    transform: translateX(100%);
+    transition: transform 340ms var(--ease);
+    z-index: 60;
+    overflow-y: auto;
+  }
+
+  :root.nav-js .site-nav.is-open {
+    transform: translateX(0);
+  }
+
+  :root.nav-js .site-nav__list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.15rem;
+  }
+
+  :root.nav-js .site-nav__link {
+    width: 100%;
+    justify-content: flex-start;
+    min-height: 52px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.82rem;
+    border-radius: 12px;
+  }
+
+  :root.nav-js .site-nav__link[aria-current="page"] {
+    background: var(--color-ink);
+    color: #fff;
+  }
+
+  :root.nav-js .nav-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-ink);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease);
+  }
+
+  :root.nav-js .nav-close:hover {
+    background: var(--color-surface-2);
+  }
+
+  /* 배경 오버레이 */
+  :root.nav-js .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.42);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 340ms var(--ease),
+      visibility 340ms var(--ease);
+    z-index: 55;
+  }
+
+  :root.nav-js .nav-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 /* ---------- 6. 버튼 ---------- */

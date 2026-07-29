@@ -25,6 +25,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendard-variable-dynamic-subset.css"
     />
+    <!-- JS 활성 시 모바일 드로어 내비 사용 (미동작 시 인라인 메뉴 폴백) -->
+    <script>
+      document.documentElement.classList.add('nav-js');
+    </script>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
@@ -36,7 +40,23 @@
         <a class="brand" href="./index.html"
           >ころんり<span class="brand__tag">Studio</span></a
         >
-        <nav class="site-nav" aria-label="주요 메뉴">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="메뉴 열기"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+          <button class="nav-close" type="button" aria-label="메뉴 닫기">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
           <ul class="site-nav__list">
             <li>
               <a class="site-nav__link" href="./index.html" aria-current="page"
@@ -70,6 +90,7 @@
             </li>
           </ul>
         </nav>
+        <div class="nav-backdrop"></div>
       </div>
     </header>
 
@@ -414,6 +435,65 @@
          인라인 classic 스크립트라 서버 없이 file://로 열어도 동작하고, 빌드에도 그대로 남는다.
          JS가 없거나 오류가 나도 내비게이션과 모든 공지 내용은 그대로 사용 가능하다. -->
     <script>
+      // ---------- 모바일 사이드 드로어 내비 ----------
+      (function initNav() {
+        try {
+          var toggle = document.querySelector('.nav-toggle');
+          var nav = document.getElementById('site-nav');
+          var backdrop = document.querySelector('.nav-backdrop');
+          var closeBtn = nav ? nav.querySelector('.nav-close') : null;
+          if (!toggle || !nav) return;
+
+          function isOpen() {
+            return nav.classList.contains('is-open');
+          }
+          function focusables() {
+            return nav.querySelectorAll('a[href], button:not([disabled])');
+          }
+          function open() {
+            nav.classList.add('is-open');
+            if (backdrop) backdrop.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            (closeBtn || nav.querySelector('a')).focus();
+          }
+          function close(returnFocus) {
+            nav.classList.remove('is-open');
+            if (backdrop) backdrop.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            if (returnFocus !== false) toggle.focus();
+          }
+
+          toggle.addEventListener('click', function () {
+            isOpen() ? close() : open();
+          });
+          if (closeBtn) closeBtn.addEventListener('click', function () { close(); });
+          if (backdrop) backdrop.addEventListener('click', function () { close(); });
+          nav.querySelectorAll('.site-nav__link').forEach(function (a) {
+            a.addEventListener('click', function () { close(false); });
+          });
+
+          document.addEventListener('keydown', function (e) {
+            if (!isOpen()) return;
+            if (e.key === 'Escape') { close(); return; }
+            if (e.key === 'Tab') {
+              var f = focusables();
+              if (!f.length) return;
+              var first = f[0], last = f[f.length - 1];
+              if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+              else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+          });
+
+          window.addEventListener('resize', function () {
+            if (window.innerWidth >= 768 && isOpen()) close(false);
+          });
+        } catch (err) {
+          /* 실패해도 데스크톱/노-JS 인라인 내비는 정상 동작 */
+        }
+      })();
+
       // ---------- 진입 리빌(스크롤 페이드업) ----------
       (function initReveal() {
         try {
