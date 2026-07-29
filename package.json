@@ -1,0 +1,17 @@
+{
+  "name": "koronri-notice-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ころんり 개인 커미션·캐릭터 분양 공지 사이트",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "images": "node scripts/generate-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "vite": "^4.5.5"
+  }
+}
