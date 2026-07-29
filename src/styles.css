@@ -36,8 +36,13 @@
 
   --radius-btn: 999px; /* 알약형 버튼 */
   --radius-card: 18px; /* 부드럽게 둥근 카드 */
+  --radius-media: 22px; /* 이미지용 큰 라운드 */
   --radius-sm: 12px;
   --border: 1px solid var(--color-line);
+
+  /* 은은한 그림자 (강한 drop shadow 금지 · 이미지 카드 부양감용) */
+  --shadow-media:
+    0 2px 6px rgba(17, 17, 17, 0.04), 0 18px 40px rgba(17, 17, 17, 0.08);
 
   --dur: 240ms;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -646,41 +651,40 @@ h3 {
 
 .work {
   margin: 0;
-  border: var(--border);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: var(--color-surface);
 }
 
+/* 이미지 자체가 카드 — 하드 보더 대신 은은한 그림자 + 큰 라운드로 갤러리처럼 */
 .work__frame {
   display: block;
   width: 100%;
-  max-height: 78vh;
+  max-height: 80vh;
   overflow: hidden;
-  background: var(--color-surface-2);
+  border-radius: var(--radius-media);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-media);
 }
 
 .work__frame img {
   width: 100%;
   height: 100%;
-  max-height: 78vh;
+  max-height: 80vh;
   object-fit: contain;
-  transition: transform 600ms var(--ease);
+  transition: transform 700ms var(--ease);
 }
 
 @media (hover: hover) {
   .work:hover .work__frame img {
-    transform: scale(1.015);
+    transform: scale(1.02);
   }
 }
 
+/* 캡션은 박스 밖 미니멀 라벨로 */
 .work figcaption {
-  padding: 0.9rem 1.2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
+  padding: 0.9rem 0.4rem 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-faint);
-  border-top: var(--border);
 }
 
 /* ---------- 14. 랜딩(hero) ---------- */
@@ -757,10 +761,10 @@ h3 {
 
 .landing__media {
   position: relative;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-media);
   overflow: hidden;
   background: var(--color-surface);
-  border: var(--border);
+  box-shadow: var(--shadow-media);
   aspect-ratio: 4 / 5;
 }
 
@@ -768,7 +772,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 18%;
 }
 
 /* ---------- 15. CTA ---------- */
@@ -808,10 +812,10 @@ h3 {
 }
 
 .adopt-hero__media {
-  border: var(--border);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-media);
   overflow: hidden;
   background: var(--color-surface);
+  box-shadow: var(--shadow-media);
 }
 
 .adopt-hero__media img {
@@ -845,11 +849,8 @@ h3 {
   align-items: center;
 }
 
+/* 레이아웃만 담당 — 실제 프레임(그림자·라운드)은 내부 .work__frame이 처리 */
 .aux-work__media {
-  border: var(--border);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: var(--color-surface-2);
   max-width: 420px;
   margin-inline: auto;
 }
