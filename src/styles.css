@@ -4,6 +4,15 @@
    구조: 토큰 → reset → 유틸 → 헤더/푸터 → 컴포넌트 → 페이지별 → 반응형 → 모션
    ========================================================================= */
 
+/* ---------- 0. 웹폰트 (자체 호스팅 · 교차 출처/CORB 이슈 없음) ---------- */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
 /* ---------- 1. 디자인 토큰 ---------- */
 :root {
   /* 팔레트: 흰색 · 검정 · 빨강 · 민트 (그 외 색상은 사용하지 않음).
