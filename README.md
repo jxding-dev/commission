@@ -7,6 +7,14 @@
 - `index.html` — 커미션 공지 및 메인 랜딩
 - `adoption.html` — 캐릭터 분양 공지
 
+## 배포된 사이트
+
+GitHub Pages로 자동 배포됩니다. `main`에 push하면 GitHub Actions 워크플로가
+빌드 후 배포합니다.
+
+- 커미션: https://jxding-dev.github.io/commission/
+- 분양: https://jxding-dev.github.io/commission/adoption.html
+
 ## 실행 방법
 
 ### 서버 없이 바로 열기 (권장, 가장 간단)
@@ -22,7 +30,6 @@ npm install          # 의존성 설치
 npm run dev          # 개발 서버 (Vite)
 npm run build        # 프로덕션 빌드 → dist/
 npm run preview      # 빌드 결과 미리보기
-npm run images       # 원본 → 웹용 최적화 이미지 재생성 (선택)
 ```
 
 빌드 결과는 `dist/`에 생성되며 `index.html`, `adoption.html`, 이미지 자산이 모두
@@ -38,39 +45,32 @@ npm run images       # 원본 → 웹용 최적화 이미지 재생성 (선택)
 ├─ vite.config.js          # 다중 페이지 입력 + base './' (상대 경로)
 ├─ src/
 │  └─ styles.css           # 공통 디자인 시스템 · 반응형 · 접근성
-├─ scripts/
-│  └─ generate-images.mjs  # 원본 → 웹용 이미지 생성 스크립트 (sharp)
 ├─ images/                 # 웹용 최적화 이미지 (영문 파일명, 상대 경로 참조)
 │  ├─ illustration-01.jpg
 │  ├─ illustration-07.jpg
 │  ├─ illustration-12.jpg
 │  ├─ illustration-13.jpg
 │  └─ illustration-14.jpg
-├─ 일러스트.jpg            # 원본 (보존, 수정하지 않음)
-├─ 일러스트7.jpg
-├─ 일러스트12.jpg
-├─ 일러스트13.jpg
-├─ 일러스트14.jpg
-└─ OPUS_IMPLEMENTATION_BRIEF.md
+└─ .github/workflows/
+   └─ deploy.yml           # GitHub Pages 자동 배포
 ```
 
 ## 이미지 매핑
 
-원본(한글명)은 루트에 그대로 보존하고, `npm run images`로 생성한 웹용 사본을
-루트 `images/`에서 사용합니다. HTML에서는 `./images/…` 상대 경로로 참조하므로,
-서버 없이 `file://`로 열어도, `npm run dev`/`build`에서도 동일하게 동작합니다.
-(빌드 시 이미지는 `dist/assets/`로 복사되며 링크가 자동 재작성됩니다.)
+`images/`의 웹용 최적화 이미지를 `./images/…` 상대 경로로 참조합니다. 서버 없이
+`file://`로 열어도, `npm run dev`/`build`에서도 동일하게 동작합니다. (빌드 시
+이미지는 `dist/assets/`로 복사되며 링크가 자동 재작성됩니다.)
 
-| 원본 | 웹용 파일 | 사용 위치 |
-|---|---|---|
-| `일러스트.jpg` | `illustration-01.jpg` | 분양 대표 이미지 (`adoption.html`) |
-| `일러스트7.jpg` | `illustration-07.jpg` | 분양 보조 작품 (`adoption.html`) |
-| `일러스트12.jpg` | `illustration-12.jpg` | 커미션 가로 작품 (`index.html`) |
-| `일러스트13.jpg` | `illustration-13.jpg` | 커미션 메인 랜딩 대표 (`index.html`) |
-| `일러스트14.jpg` | `illustration-14.jpg` | 커미션 세로 작품 (`index.html`) |
+| 웹용 파일 | 사용 위치 |
+|---|---|
+| `illustration-01.jpg` | 분양 대표 이미지 (`adoption.html`) |
+| `illustration-07.jpg` | 분양 보조 작품 (`adoption.html`) |
+| `illustration-12.jpg` | 커미션 가로 작품 (`index.html`) |
+| `illustration-13.jpg` | 커미션 메인 랜딩 대표 (`index.html`) |
+| `illustration-14.jpg` | 커미션 세로 작품 (`index.html`) |
 
-원본을 교체할 경우 루트의 한글명 파일을 바꾼 뒤 `npm run images`를 다시 실행하면
-웹용 사본이 갱신됩니다.
+이미지를 교체하려면 `images/`의 해당 파일을 같은 이름의 새 이미지로 덮어쓰면
+됩니다.
 
 ## 확정 정보
 
@@ -129,8 +129,8 @@ npm run images       # 원본 → 웹용 최적화 이미지 재생성 (선택)
 
 ## 기술 참고
 
-- 빌드는 Vite 4를 사용합니다. (이 환경에서 Rollup 4의 네이티브 바이너리가 OS
+- 빌드는 Vite 4를 사용합니다. (개발 환경에서 Rollup 4의 네이티브 바이너리가 OS
   Application Control 정책에 의해 차단되어, 순수 JS Rollup 3 기반의 Vite 4로
   고정했습니다. 정책이 없는 환경이라면 상위 버전으로 올려도 됩니다.)
-- `sharp`는 이미지 생성 스크립트(`npm run images`)에서만 쓰이며 빌드 필수
-  의존성이 아닙니다.
+- 이미지는 이미 웹용으로 최적화되어 `images/`에 포함돼 있습니다. 별도 빌드
+  의존성은 Vite뿐입니다.
