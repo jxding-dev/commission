@@ -145,6 +145,22 @@
 
       <div class="container"><hr class="divider" /></div>
 
+      <!-- ================= 페이지 내 목차 ================= -->
+      <nav class="container" aria-label="페이지 내 목차">
+        <div class="toc">
+          <p class="toc__label">On this page</p>
+          <ul class="toc__list">
+            <li><a href="#steps-title">분양 절차</a></li>
+            <li><a href="#files-title">제공 파일</a></li>
+            <li><a href="#usage-title">사용 가능 범위</a></li>
+            <li><a href="#prohibit-title">금지사항</a></li>
+            <li><a href="#transfer-title">수정·양도·재분양</a></li>
+            <li><a href="#copyright-title">저작권·출처</a></li>
+            <li><a href="#contact">문의</a></li>
+          </ul>
+        </div>
+      </nav>
+
       <!-- ================= 7.3 분양 절차 ================= -->
       <section class="section container" aria-labelledby="steps-title">
         <p class="eyebrow"><span class="num">02</span> Process</p>
@@ -460,9 +476,35 @@
       </div>
     </footer>
 
+    <button class="to-top" type="button" aria-label="맨 위로 이동">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
     <!-- 모바일 드로어 내비 + 진입 리빌 인라인 스크립트.
          JS가 없거나·reduced-motion이거나·오류가 나도 내용은 그대로 보인다. -->
     <script>
+      // ---------- 맨 위로 버튼 ----------
+      (function initToTop() {
+        try {
+          var btn = document.querySelector('.to-top');
+          if (!btn) return;
+          var reduce =
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          function onScroll() {
+            if (window.scrollY > 600) btn.classList.add('is-visible');
+            else btn.classList.remove('is-visible');
+          }
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+          btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+          });
+        } catch (e) {}
+      })();
+
       // ---------- 모바일 사이드 드로어 내비 ----------
       (function initNav() {
         try {

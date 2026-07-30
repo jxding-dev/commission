@@ -591,10 +591,36 @@
       </div>
     </footer>
 
+    <button class="to-top" type="button" aria-label="맨 위로 이동">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
     <!-- 선택적 향상만 담당하는 인라인 스크립트(진입 리빌 + 신청 양식 복사).
          인라인 classic 스크립트라 서버 없이 file://로 열어도 동작하고, 빌드에도 그대로 남는다.
          JS가 없거나 오류가 나도 내비게이션과 모든 공지 내용은 그대로 사용 가능하다. -->
     <script>
+      // ---------- 맨 위로 버튼 ----------
+      (function initToTop() {
+        try {
+          var btn = document.querySelector('.to-top');
+          if (!btn) return;
+          var reduce =
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          function onScroll() {
+            if (window.scrollY > 600) btn.classList.add('is-visible');
+            else btn.classList.remove('is-visible');
+          }
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+          btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+          });
+        } catch (e) {}
+      })();
+
       // ---------- 모바일 사이드 드로어 내비 ----------
       (function initNav() {
         try {
