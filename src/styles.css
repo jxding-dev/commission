@@ -633,6 +633,109 @@ h3 {
   color: var(--color-muted);
 }
 
+/* ---------- 9b. 사용 범위 비교 표 (비상업·방송·상업) ---------- */
+/* 데스크톱: 일반 표 · 모바일: 항목별 카드로 자동 전환 */
+.usage-table-wrap {
+  margin-top: 1.75rem;
+  overflow-x: auto;
+}
+
+.usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.usage-table thead th {
+  text-align: left;
+  padding: 0.65rem 1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  font-weight: 400;
+  border-bottom: 1px solid var(--color-line-strong);
+  white-space: nowrap;
+}
+
+.usage-table thead th:first-child {
+  width: 34%;
+}
+
+.usage-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 0.85rem 1rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.usage-table tbody td {
+  padding: 0.85rem 1rem;
+  color: var(--color-muted);
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-line);
+}
+
+@media (max-width: 47.99em) {
+  .usage-table-wrap {
+    overflow-x: visible;
+  }
+
+  /* thead는 시각적으로 숨기고(스크린리더용 유지) 각 행을 카드로 */
+  .usage-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .usage-table,
+  .usage-table tbody,
+  .usage-table tr,
+  .usage-table th,
+  .usage-table td {
+    display: block;
+  }
+
+  .usage-table tr {
+    border: var(--border);
+    border-radius: var(--radius-card);
+    padding: 0.35rem 0.35rem 0.55rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .usage-table tbody th {
+    border-bottom: var(--border);
+    padding: 0.7rem 0.85rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .usage-table tbody td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.4rem 0.85rem;
+    text-align: right;
+  }
+
+  .usage-table tbody td::before {
+    content: attr(data-label);
+    color: var(--color-faint);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: left;
+    flex: 0 0 auto;
+  }
+}
+
 /* ---------- 10. 목차(TOC) ---------- */
 .toc {
   border-block: var(--border);
