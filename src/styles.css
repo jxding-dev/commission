@@ -46,7 +46,6 @@
   --radius-btn: 999px; /* 알약형 버튼 */
   --radius-card: 18px; /* 부드럽게 둥근 카드 */
   --radius-media: 22px; /* 이미지용 큰 라운드 */
-  --radius-sm: 12px;
   --border: 1px solid var(--color-line);
 
   /* 은은한 그림자 (강한 drop shadow 금지 · 이미지 카드 부양감용) */
@@ -655,8 +654,10 @@ h3 {
 }
 
 .toc__list a {
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
   font-size: 0.82rem;
   text-decoration: none;
   color: var(--color-text);
