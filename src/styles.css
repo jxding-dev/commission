@@ -633,6 +633,64 @@ h3 {
   color: var(--color-muted);
 }
 
+/* 강조형 콜아웃 (신청 전 필독 등) */
+.callout--notice {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.callout strong {
+  color: var(--color-accent-dark);
+}
+
+/* ---------- 9c. FAQ (details 아코디언) ---------- */
+.faq {
+  margin-top: 1.75rem;
+  border-top: var(--border);
+}
+
+.faq details {
+  border-bottom: var(--border);
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0.25rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--color-accent-dark);
+  transition: transform var(--dur) var(--ease);
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq summary:hover {
+  color: var(--color-accent-dark);
+}
+
+.faq__a {
+  padding: 0 0.25rem 1.2rem;
+  color: var(--color-muted);
+}
+
 /* ---------- 9b. 사용 범위 비교 표 (비상업·방송·상업) ---------- */
 /* 데스크톱: 일반 표 · 모바일: 항목별 카드로 자동 전환 */
 .usage-table-wrap {

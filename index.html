@@ -166,6 +166,13 @@
             <dd><span class="pending pending--neutral">준비 중</span></dd>
           </div>
         </dl>
+
+        <p class="callout callout--notice measure">
+          <strong>신청 전 필독</strong> · 예약 후 순번이 되면 결제하는
+          예약제입니다. 작업 불가 소재를 먼저 확인해 주시고, 모든 저작권은
+          koronri에게 있습니다. 신청 시 본 공지 및 주의사항에 동의한 것으로
+          간주됩니다.
+        </p>
       </section>
 
       <!-- ================= 6.3 페이지 내 목차 ================= -->
@@ -179,6 +186,7 @@
             <li><a href="#process">작업 과정</a></li>
             <li><a href="#payment">결제·취소</a></li>
             <li><a href="#rights">저작권·사용 범위</a></li>
+            <li><a href="#faq">자주 묻는 질문</a></li>
             <li><a href="#contact">문의</a></li>
           </ul>
         </div>
@@ -500,6 +508,67 @@
 
       <div class="container"><hr class="divider" /></div>
 
+      <!-- ================= 6.8b FAQ ================= -->
+      <section id="faq" class="section container" aria-labelledby="faq-title">
+        <p class="eyebrow"><span class="num">08</span> FAQ</p>
+        <h2 class="section-title" id="faq-title">자주 묻는 질문</h2>
+
+        <div class="faq measure">
+          <details>
+            <summary>선입금인가요?</summary>
+            <p class="faq__a">
+              예약 후 순번이 되면 결제하는 예약제입니다. 입금 전 예약 상태에서는
+              취소가 가능합니다.
+            </p>
+          </details>
+          <details>
+            <summary>작업 기간은 얼마나 걸리나요?</summary>
+            <p class="faq__a">
+              기본 작업기한은 일러스트 타입 2주, 버츄얼 타입 한 달입니다. 당일
+              마감이 필요하면 미리 문의해 주세요.
+            </p>
+          </details>
+          <details>
+            <summary>수정은 몇 번까지 가능한가요?</summary>
+            <p class="faq__a">
+              작가 실수에 한해 무제한이며, 실수가 아닌 수정은 추가금이
+              발생합니다.
+            </p>
+          </details>
+          <details>
+            <summary>취소·환불이 되나요?</summary>
+            <p class="faq__a">
+              취소는 입금 전 예약 상태에서만 가능합니다. 환불은 작업 단계에 따라
+              80% / 70% / 50%로 차등되며, 2차 컨펌부터는 불가합니다. 작가가
+              기간을 넘긴 경우 100% 환불 및 작업물을 전달드립니다.
+            </p>
+          </details>
+          <details>
+            <summary>상업적으로 사용해도 되나요?</summary>
+            <p class="faq__a">
+              상업 이용은 상업용 가격 구매 후 가능합니다. 방송용·상업용은 가격이
+              다르니 문의해 주세요.
+            </p>
+          </details>
+          <details>
+            <summary>투명 배경(PNG) 파일을 받을 수 있나요?</summary>
+            <p class="faq__a">
+              그림체 특성상 PNG 파일이 필요하면 신청 시 미리 문의해 주세요.
+              작업물은 기본 가로·세로 3000px 이상으로 작업됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>어떤 소재는 작업이 어렵나요?</summary>
+            <p class="faq__a">
+              근육질, 과도한 메카닉, 중년 및 노인, 실사, 논란 있는 장르·소재는
+              작업이 어렵습니다.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <div class="container"><hr class="divider" /></div>
+
       <!-- ================= 6.9 작품 영역 ================= -->
       <section class="section container" aria-labelledby="works-title">
         <p class="eyebrow"><span class="num">—</span> Selected Works</p>
@@ -736,14 +805,14 @@
           var source = sourceId ? document.getElementById(sourceId) : null;
           if (!source) return;
 
-          // 정의 목록(dt/dd)에서 복사용 평문 생성
+          // 각 항목명(dd)으로 채우기 좋은 평문 양식을 생성
           function buildText() {
             var rows = source.querySelectorAll(':scope > div');
             var lines = [];
             rows.forEach(function (row) {
-              var dt = row.querySelector('dt');
-              var label = dt ? dt.textContent.replace(/\s+/g, ' ').trim() : '';
-              if (label) lines.push(label + ':');
+              var dd = row.querySelector('dd');
+              var label = dd ? dd.textContent.replace(/\s+/g, ' ').trim() : '';
+              if (label) lines.push(label + ': ');
             });
             return lines.join('\n');
           }

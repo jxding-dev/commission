@@ -141,6 +141,12 @@
             <span class="visually-hidden">(새 탭으로 열림)</span>
           </a>
         </div>
+
+        <p class="callout callout--notice measure">
+          <strong>구매 전 필독</strong> · 모든 저작권은 koronri에게 있으며,
+          방송용·상업용·개인용은 가격이 다릅니다. 구매·문의 시 본 공지 및
+          주의사항에 동의한 것으로 간주됩니다.
+        </p>
       </section>
 
       <div class="container"><hr class="divider" /></div>
@@ -156,6 +162,7 @@
             <li><a href="#prohibit-title">금지사항</a></li>
             <li><a href="#transfer-title">수정·양도·재분양</a></li>
             <li><a href="#copyright-title">저작권·출처</a></li>
+            <li><a href="#inquiry">구매 문의 양식</a></li>
             <li><a href="#contact">문의</a></li>
           </ul>
         </div>
@@ -418,6 +425,41 @@
         </div>
       </section>
 
+      <div class="container"><hr class="divider" /></div>
+
+      <!-- ================= 구매 문의 양식 ================= -->
+      <section
+        id="inquiry"
+        class="section container"
+        aria-labelledby="inquiry-title"
+      >
+        <p class="eyebrow"><span class="num">08</span> Inquiry</p>
+        <h2 class="section-title" id="inquiry-title">구매 문의 양식</h2>
+        <p class="lede measure">
+          아래 항목을 함께 전달해 주시면 상담이 빠릅니다. 구매·문의 시 본 공지 및
+          주의사항에 동의한 것으로 간주됩니다.
+        </p>
+
+        <dl class="form-fields measure" id="inquiry-form">
+          <div><dt>01</dt><dd>신청자명 / 입금자명</dd></div>
+          <div><dt>02</dt><dd>연락 가능한 계정</dd></div>
+          <div><dt>03</dt><dd>구매 희망 캐릭터</dd></div>
+          <div><dt>04</dt><dd>사용 용도 (개인 / 방송 / 상업)</dd></div>
+          <div><dt>05</dt><dd>원하는 수정 사항 (있다면)</dd></div>
+          <div><dt>06</dt><dd>기타 요청사항</dd></div>
+        </dl>
+
+        <div class="btn-row">
+          <button
+            type="button"
+            class="btn btn--ghost"
+            data-copy-form="inquiry-form"
+          >
+            양식 항목 복사
+          </button>
+        </div>
+      </section>
+
       <!-- ================= 7.10 최종 문의 CTA ================= -->
       <section
         id="contact"
@@ -606,6 +648,83 @@
           try {
             document.documentElement.classList.remove('reveal-on');
           } catch (e2) {}
+        }
+      })();
+
+      // ---------- 구매 문의 양식 복사 버튼 ----------
+      (function initCopyForm() {
+        try {
+          var btn = document.querySelector('[data-copy-form]');
+          if (!btn) return;
+          var sourceId = btn.getAttribute('data-copy-form');
+          var source = sourceId ? document.getElementById(sourceId) : null;
+          if (!source) return;
+
+          function buildText() {
+            var rows = source.querySelectorAll(':scope > div');
+            var lines = [];
+            rows.forEach(function (row) {
+              var dd = row.querySelector('dd');
+              var label = dd ? dd.textContent.replace(/\s+/g, ' ').trim() : '';
+              if (label) lines.push(label + ': ');
+            });
+            return lines.join('\n');
+          }
+
+          var defaultLabel = btn.textContent;
+          var resetTimer = null;
+          function flash(message) {
+            btn.textContent = message;
+            if (resetTimer) clearTimeout(resetTimer);
+            resetTimer = setTimeout(function () {
+              btn.textContent = defaultLabel;
+            }, 2200);
+          }
+
+          function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.top = '-1000px';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = false;
+            try {
+              ok = document.execCommand('copy');
+            } catch (e) {
+              ok = false;
+            }
+            document.body.removeChild(ta);
+            return ok;
+          }
+
+          btn.addEventListener('click', async function () {
+            var text = buildText();
+            if (!text) {
+              flash('복사할 내용이 없습니다');
+              return;
+            }
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                flash('양식을 복사했습니다');
+              } else if (fallbackCopy(text)) {
+                flash('양식을 복사했습니다');
+              } else {
+                flash('직접 선택해 복사해 주세요');
+              }
+            } catch (e) {
+              if (fallbackCopy(text)) {
+                flash('양식을 복사했습니다');
+              } else {
+                flash('직접 선택해 복사해 주세요');
+              }
+            }
+          });
+        } catch (err) {
+          console.warn('[copy-form] 초기화 실패, 복사 기능만 비활성화합니다.', err);
         }
       })();
     </script>
