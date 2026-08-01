@@ -1,38 +1,41 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ころんり — 캐릭터 분양 안내</title>
+    <title>ころんり — キャラクターデザインのご購入ガイド</title>
     <meta
       name="description"
-      content="ころんり의 캐릭터 분양 절차와 이용 주의사항을 안내합니다."
+      content="ころんりのキャラクターデザインのご購入までの流れと、利用時の注意事項をご案内します。"
     />
 
-    <!-- Open Graph (배포 도메인 확정 후 절대 URL로 교체 · README 참고) -->
+    <!-- Open Graph (デプロイ先ドメイン確定後、絶対URLに置き換え · README参照) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="ころんり — 캐릭터 분양 안내" />
+    <meta property="og:title" content="ころんり — キャラクターデザインのご購入ガイド" />
     <meta
       property="og:description"
-      content="ころんり의 캐릭터 분양 절차와 이용 주의사항을 안내합니다."
+      content="ころんりのキャラクターデザインのご購入方法や利用条件をご案内します。"
     />
     <meta property="og:image" content="./images/illustration-01.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- 웹폰트 Pretendard는 styles.css에서 자체 호스팅(@font-face)으로 로드 -->
-    <!-- JS 활성 시 모바일 드로어 내비 사용 (미동작 시 인라인 메뉴 폴백) -->
+    <!-- 다국어 대체 링크 -->
+    <link rel="alternate" hreflang="ko" href="./adoption.html" />
+    <link rel="alternate" hreflang="ja" href="./adoption-ja.html" />
+    <link rel="alternate" hreflang="x-default" href="./adoption.html" />
+
     <script>
       document.documentElement.classList.add('nav-js');
     </script>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <a class="skip-link" href="#main">本文へスキップ</a>
 
-    <!-- ================= 헤더 ================= -->
+    <!-- ================= ヘッダー ================= -->
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="brand" href="./index.html"
+        <a class="brand" href="./index-ja.html"
           >ころんり<span class="brand__tag">Studio</span></a
         >
         <button
@@ -40,14 +43,14 @@
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
-          aria-label="메뉴 열기"
+          aria-label="メニューを開く"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
           </svg>
         </button>
-        <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
-          <button class="nav-close" type="button" aria-label="메뉴 닫기">
+        <nav class="site-nav" id="site-nav" aria-label="メインメニュー">
+          <button class="nav-close" type="button" aria-label="メニューを閉じる">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
             </svg>
@@ -56,19 +59,19 @@
             <li>
               <a
                 class="site-nav__link site-nav__link--lang"
-                href="./adoption-ja.html"
-                hreflang="ja"
-                lang="ja"
-                >日本語</a
+                href="./adoption.html"
+                hreflang="ko"
+                lang="ko"
+                >한국어</a
               >
             </li>
             <li>
-              <a class="site-nav__link" href="./index.html">Commission</a>
+              <a class="site-nav__link" href="./index-ja.html">Commission</a>
             </li>
             <li>
               <a
                 class="site-nav__link"
-                href="./adoption.html"
+                href="./adoption-ja.html"
                 aria-current="page"
                 >Adoption</a
               >
@@ -81,7 +84,7 @@
                 rel="noopener noreferrer"
               >
                 X<span class="ext" aria-hidden="true">↗</span>
-                <span class="visually-hidden">(새 탭으로 열림)</span>
+                <span class="visually-hidden">（新しいタブで開きます）</span>
               </a>
             </li>
             <li>
@@ -92,7 +95,7 @@
                 rel="noopener noreferrer"
               >
                 YouTube<span class="ext" aria-hidden="true">↗</span>
-                <span class="visually-hidden">(새 탭으로 열림)</span>
+                <span class="visually-hidden">（新しいタブで開きます）</span>
               </a>
             </li>
           </ul>
@@ -102,7 +105,7 @@
     </header>
 
     <main id="main">
-      <!-- ================= 7.1 대표 비주얼 ================= -->
+      <!-- ================= 代表ビジュアル ================= -->
       <section class="adopt-hero container" aria-labelledby="adopt-title">
         <div class="adopt-hero__grid">
           <div class="adopt-hero__media reveal">
@@ -110,7 +113,7 @@
               src="./images/illustration-01.jpg"
               width="1600"
               height="1594"
-              alt="검은 머리에 검은 드레스를 입고 곰 인형을 든 캐릭터의 전신과 얼굴 클로즈업이 함께 담긴 일러스트"
+              alt="クマのぬいぐるみを持った黒髪の少女の全身と顔のクローズアップのイラスト"
               fetchpriority="high"
               decoding="async"
             />
@@ -119,10 +122,10 @@
             <p class="eyebrow"><span class="num">◆</span> Character Adoption</p>
             <h1 class="adopt-hero__title" id="adopt-title">
               CHARACTER ADOPTION
-              <span class="kr">캐릭터 분양 및 이용 안내</span>
+              <span class="kr">キャラクターデザインのご購入・ご利用ガイド</span>
             </h1>
             <p class="landing__lead">
-              캐릭터 디자인의 구매와 사용 전 아래 안내를 확인해 주세요.
+              キャラクターをご購入・ご利用いただく前に、以下の内容をご確認ください。
             </p>
           </div>
         </div>
@@ -130,14 +133,13 @@
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.2 현재 상태 ================= -->
+      <!-- ================= 現在の販売状況 ================= -->
       <section class="section container" aria-labelledby="status-title">
         <p class="eyebrow"><span class="num">01</span> Current Status</p>
-        <h2 class="section-title" id="status-title">현재 상태</h2>
-        <p style="margin-top: 1rem"><span class="status">Preparing</span></p>
+        <h2 class="section-title" id="status-title">現在の販売状況</h2>
+        <p style="margin-top: 1rem"><span class="status">準備中</span></p>
         <p class="lede measure">
-          현재 공개된 분양 캐릭터가 없습니다. 새로운 분양 소식은 X를 통해 먼저
-          안내됩니다.
+          現在販売中のキャラクターはございません。最新情報はXでいち早くお知らせします。
         </p>
         <div class="btn-row">
           <a
@@ -146,273 +148,269 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            X에서 소식 확인하기
-            <span class="visually-hidden">(새 탭으로 열림)</span>
+            Xで最新情報を見る
+            <span class="visually-hidden">（新しいタブで開きます）</span>
           </a>
         </div>
 
         <p class="callout callout--notice measure">
-          <strong>구매 전 필독</strong> · 모든 저작권은 koronri에게 있으며,
-          방송용·상업용·개인용은 가격이 다릅니다. 구매·문의 시 본 공지 및
-          주의사항에 동의한 것으로 간주됩니다.
+          <strong>ご購入前に必ずご確認ください</strong> ・
+          著作権はすべてkoronriに帰属します。ご利用目的（個人・配信・商用）によって
+          料金が異なります。ご購入・お問い合わせいただいた時点で、本注意事項に
+          同意したものとみなします。
         </p>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 페이지 내 목차 ================= -->
-      <nav class="container" aria-label="페이지 내 목차">
+      <!-- ================= ページ内目次 ================= -->
+      <nav class="container" aria-label="ページ内目次">
         <div class="toc">
           <p class="toc__label">On this page</p>
           <ul class="toc__list">
-            <li><a href="#steps-title">분양 절차</a></li>
-            <li><a href="#files-title">제공 파일</a></li>
-            <li><a href="#usage-title">사용 가능 범위</a></li>
-            <li><a href="#prohibit-title">금지사항</a></li>
-            <li><a href="#transfer-title">수정·양도·재분양</a></li>
-            <li><a href="#copyright-title">저작권·출처</a></li>
-            <li><a href="#inquiry">구매 문의 양식</a></li>
-            <li><a href="#contact">문의</a></li>
+            <li><a href="#steps-title">ご購入までの流れ</a></li>
+            <li><a href="#files-title">納品内容</a></li>
+            <li><a href="#usage-title">利用範囲</a></li>
+            <li><a href="#prohibit-title">禁止事項</a></li>
+            <li><a href="#transfer-title">修正・譲渡・再販売</a></li>
+            <li><a href="#copyright-title">著作権・クレジット</a></li>
+            <li><a href="#inquiry">ご購入時の記入例</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
           </ul>
         </div>
       </nav>
 
-      <!-- ================= 7.3 분양 절차 ================= -->
+      <!-- ================= ご購入までの流れ ================= -->
       <section class="section container" aria-labelledby="steps-title">
         <p class="eyebrow"><span class="num">02</span> Process</p>
-        <h2 class="section-title" id="steps-title">분양 절차</h2>
+        <h2 class="section-title" id="steps-title">ご購入までの流れ</h2>
         <ol class="steps measure">
-          <li><span>캐릭터 및 규정 확인</span></li>
-          <li><span>X를 통한 구매 문의</span></li>
-          <li><span>구매 가능 여부 확인</span></li>
-          <li><span>입금 및 확인</span></li>
-          <li><span>원본 파일 전달</span></li>
-          <li><span>인수 완료</span></li>
+          <li><span>キャラクター・利用規約の確認</span></li>
+          <li><span>XのDMから購入希望をご連絡</span></li>
+          <li><span>ご購入可否のご案内</span></li>
+          <li><span>ご入金・お支払い確認</span></li>
+          <li><span>データのお渡し</span></li>
+          <li><span>お取引完了</span></li>
         </ol>
         <p class="callout measure">
-          세부 절차는 분양 공개 시 최종 안내됩니다.
+          詳しいお手続きは、販売開始時に改めてご案内いたします。
         </p>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.4 제공 파일 ================= -->
+      <!-- ================= 納品内容 ================= -->
       <section class="section container" aria-labelledby="files-title">
         <p class="eyebrow"><span class="num">03</span> Included Files</p>
-        <h2 class="section-title" id="files-title">제공 파일</h2>
+        <h2 class="section-title" id="files-title">納品内容</h2>
         <p class="lede measure">
-          모든 저작권은 <strong>koronri</strong>에게 있습니다. 트레이싱, 파쿠리,
-          그림 참고, 허락 없는 2차 가공을 금지합니다. 방송용·상업용·개인용은
-          가격이 다르니 유의해 주세요.
+          著作権はすべて<strong>koronri</strong>に帰属します。トレース・模写・盗作、
+          無断での加工は禁止です。ご利用目的（個人・配信・商用）によって料金が異なります。
         </p>
         <dl class="def-list measure">
           <div>
-            <dt>이미지 파일 형식</dt>
+            <dt>ファイル形式</dt>
             <dd>JPG · PNG</dd>
           </div>
           <div>
-            <dt>투명 배경 파일</dt>
-            <dd>제공</dd>
+            <dt>透過背景ファイル</dt>
+            <dd>提供</dd>
           </div>
           <div>
-            <dt>설정 자료</dt>
-            <dd>간단한 자료 제공 (수정 또는 새로 제작 모두 가능)</dd>
+            <dt>キャラクター設定資料</dt>
+            <dd>簡単な設定資料をお渡しします（修正・新規制作どちらも可能）</dd>
           </div>
           <div>
-            <dt>원본 해상도</dt>
+            <dt>解像度</dt>
             <dd>72dpi</dd>
           </div>
           <div>
-            <dt>편집 파일 제공 여부</dt>
-            <dd>미제공</dd>
+            <dt>編集データ</dt>
+            <dd>提供しておりません</dd>
           </div>
           <div>
-            <dt>재전송 가능 기간</dt>
-            <dd><span class="pending pending--neutral">문의</span></dd>
+            <dt>再送可能期間</dt>
+            <dd><span class="pending pending--neutral">お問い合わせください</span></dd>
           </div>
         </dl>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.5 사용 가능 범위 ================= -->
+      <!-- ================= 利用範囲 ================= -->
       <section class="section container" aria-labelledby="usage-title">
         <p class="eyebrow"><span class="num">04</span> Permitted Use</p>
-        <h2 class="section-title" id="usage-title">사용 가능 범위</h2>
+        <h2 class="section-title" id="usage-title">利用範囲</h2>
         <div class="usage-table-wrap measure">
           <table class="usage-table">
-            <caption class="visually-hidden">
-              라이선스 등급별 사용 범위
-            </caption>
+            <caption class="visually-hidden">ライセンス区分別の利用範囲</caption>
             <thead>
               <tr>
-                <th scope="col">항목</th>
-                <th scope="col">비상업 (개인)</th>
-                <th scope="col">방송용</th>
-                <th scope="col">상업용</th>
+                <th scope="col">項目</th>
+                <th scope="col">非商用（個人）</th>
+                <th scope="col">配信用</th>
+                <th scope="col">商用</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">개인 캐릭터 사용</th>
-                <td data-label="비상업(개인)">가능</td>
-                <td data-label="방송용">가능</td>
-                <td data-label="상업용">가능</td>
+                <th scope="row">個人でのキャラクター利用</th>
+                <td data-label="非商用（個人）">可</td>
+                <td data-label="配信用">可</td>
+                <td data-label="商用">可</td>
               </tr>
               <tr>
-                <th scope="row">SNS · 커뮤니티 활동</th>
-                <td data-label="비상업(개인)">출처 표기 필수</td>
-                <td data-label="방송용">공지글 1회 표기</td>
-                <td data-label="상업용">표기 불필요</td>
+                <th scope="row">SNS・コミュニティ利用</th>
+                <td data-label="非商用（個人）">クレジット表記必須</td>
+                <td data-label="配信用">初回の告知投稿で表記</td>
+                <td data-label="商用">表記不要</td>
               </tr>
               <tr>
-                <th scope="row">설정 · 이름 · 의상 수정</th>
-                <td data-label="비상업(개인)">의상 1회 한정</td>
-                <td data-label="방송용">문의 필요</td>
-                <td data-label="상업용">문의 필요</td>
+                <th scope="row">設定・名前・衣装の変更</th>
+                <td data-label="非商用（個人）">衣装のみ1回限定</td>
+                <td data-label="配信用">要相談</td>
+                <td data-label="商用">要相談</td>
               </tr>
               <tr>
-                <th scope="row">커미션 신청 자료</th>
-                <td data-label="비상업(개인)">가능</td>
-                <td data-label="방송용">가능</td>
-                <td data-label="상업용">가능</td>
+                <th scope="row">コミッション資料としての使用</th>
+                <td data-label="非商用（個人）">可</td>
+                <td data-label="配信用">可</td>
+                <td data-label="商用">可</td>
               </tr>
               <tr>
-                <th scope="row">방송 및 영상</th>
-                <td data-label="비상업(개인)">불가</td>
-                <td data-label="방송용">가능</td>
-                <td data-label="상업용">가능</td>
+                <th scope="row">動画投稿・配信</th>
+                <td data-label="非商用（個人）">不可</td>
+                <td data-label="配信用">可</td>
+                <td data-label="商用">可</td>
               </tr>
               <tr>
-                <th scope="row">굿즈 · 상업적 이용</th>
-                <td data-label="비상업(개인)">불가</td>
-                <td data-label="방송용">불가</td>
-                <td data-label="상업용">가능</td>
+                <th scope="row">グッズ制作・商用利用</th>
+                <td data-label="非商用（個人）">不可</td>
+                <td data-label="配信用">不可</td>
+                <td data-label="商用">可</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <p class="callout measure">
-          방송용·상업용·개인용은 가격이 다릅니다. 이 점 유의해 주세요.
+          ご利用目的（個人・配信・商用）によって料金が異なります。
         </p>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.6 금지사항 ================= -->
+      <!-- ================= 禁止事項 ================= -->
       <section class="section container" aria-labelledby="prohibit-title">
         <p class="eyebrow"><span class="num">05</span> Restrictions</p>
-        <h2 class="section-title" id="prohibit-title">금지사항</h2>
-        <p class="lede measure">
-          아래 항목은 금지됩니다.
-        </p>
+        <h2 class="section-title" id="prohibit-title">禁止事項</h2>
+        <p class="lede measure">以下の行為は禁止しています。</p>
         <dl class="def-list measure">
           <div>
-            <dt>구매 전 이미지 사용</dt>
-            <dd>금지</dd>
+            <dt>購入前の画像使用</dt>
+            <dd>禁止</dd>
           </div>
           <div>
-            <dt>원작자 사칭</dt>
-            <dd>금지</dd>
+            <dt>原作者へのなりすまし</dt>
+            <dd>禁止</dd>
           </div>
           <div>
-            <dt>원본·수정본 재배포</dt>
-            <dd>상업용 이외 불가능</dd>
+            <dt>元データ・加工データの再配布</dt>
+            <dd>原則禁止（商用利用時は要相談）</dd>
           </div>
           <div>
-            <dt>디자인 복제</dt>
-            <dd>금지 (상업용에 한하여 문의 필요)</dd>
+            <dt>デザインの複製・模倣</dt>
+            <dd>禁止（商用に限り要相談）</dd>
           </div>
           <div>
-            <dt>생성형 AI 관련 이용</dt>
-            <dd>금지</dd>
+            <dt>生成AIへの利用</dt>
+            <dd>禁止</dd>
           </div>
           <div>
-            <dt>NFT 및 유사 용도</dt>
-            <dd>금지</dd>
+            <dt>NFTおよび類似用途</dt>
+            <dd>禁止</dd>
           </div>
         </dl>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.7 수정·양도·재분양 ================= -->
+      <!-- ================= 修正・譲渡・再販売 ================= -->
       <section class="section container" aria-labelledby="transfer-title">
         <p class="eyebrow"><span class="num">06</span> Transfer &amp; Resale</p>
-        <h2 class="section-title" id="transfer-title">수정·양도·재분양</h2>
+        <h2 class="section-title" id="transfer-title">修正・譲渡・再販売</h2>
         <dl class="def-list measure">
           <div>
-            <dt>디자인 변경 범위</dt>
+            <dt>デザイン変更の範囲</dt>
             <dd>
-              개인은 1회 한정 옷 입히기·악세서리 교체 가능 · 방송용도 동일하나
-              영구적 변경 및 캐릭터 색 변경은 문의 필요(협의 가능) · 상업용도
-              방송용과 동일
+              個人利用は衣装・アクセサリーのみ1回限り変更可能 ·
+              配信用も同様ですが、恒久的な変更や配色の変更は要相談（協議可）·
+              商用も配信用と同様
             </dd>
           </div>
           <div>
-            <dt>무료 양도</dt>
-            <dd>문의 필요</dd>
+            <dt>無償譲渡</dt>
+            <dd>お問い合わせください</dd>
           </div>
           <div>
-            <dt>재분양</dt>
-            <dd>모든 경우 문의 필요</dd>
+            <dt>再販売</dt>
+            <dd>すべての場合、要相談</dd>
           </div>
           <div>
-            <dt>재분양 가격</dt>
-            <dd>문의 필요</dd>
+            <dt>再販売価格</dt>
+            <dd>要相談</dd>
           </div>
           <div>
-            <dt>추가 커미션 비용 반영</dt>
-            <dd><span class="pending pending--neutral">문의 필요</span></dd>
+            <dt>追加コミッション費用の反映</dt>
+            <dd><span class="pending pending--neutral">お問い合わせください</span></dd>
           </div>
           <div>
-            <dt>원작자 통보</dt>
-            <dd>재분양 시 반드시 필요</dd>
+            <dt>原作者への通知</dt>
+            <dd>再販売時は必ず必要です</dd>
           </div>
           <div>
-            <dt>공동 소유</dt>
-            <dd>협의 후 결정</dd>
+            <dt>共同所有</dt>
+            <dd>ご相談のうえ決定します</dd>
           </div>
         </dl>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.8 저작권과 출처 ================= -->
+      <!-- ================= 著作権・クレジット ================= -->
       <section class="section container" aria-labelledby="copyright-title">
         <p class="eyebrow"><span class="num">07</span> Copyright</p>
-        <h2 class="section-title" id="copyright-title">저작권과 출처</h2>
+        <h2 class="section-title" id="copyright-title">著作権とクレジット</h2>
         <dl class="def-list measure">
           <div>
-            <dt>디자인 및 그림 저작권</dt>
+            <dt>デザイン・イラストの著作権</dt>
             <dd>koronri</dd>
           </div>
           <div>
-            <dt>구매자가 얻는 이용 범위</dt>
-            <dd>사용 가능 범위 참조</dd>
+            <dt>購入者が利用できる範囲</dt>
+            <dd>「利用範囲」をご参照ください</dd>
           </div>
           <div>
-            <dt>원작자 표기</dt>
-            <dd>사용 가능 범위 참조</dd>
+            <dt>クレジット表記</dt>
+            <dd>「利用範囲」をご参照ください</dd>
           </div>
           <div>
-            <dt>상업적 이용</dt>
-            <dd>협의 필요</dd>
+            <dt>商業利用</dt>
+            <dd>要相談</dd>
           </div>
           <div>
-            <dt>포트폴리오 공개</dt>
-            <dd>원치 않을 시 문의</dd>
+            <dt>ポートフォリオへの掲載</dt>
+            <dd>非公開をご希望の場合はご連絡ください</dd>
           </div>
         </dl>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 7.9 보조 작품 ================= -->
+      <!-- ================= 参考作品 ================= -->
       <section class="section container" aria-labelledby="aux-title">
         <p class="eyebrow"><span class="num">—</span> Selected Work</p>
-        <h2 class="section-title" id="aux-title">보조 작품</h2>
+        <h2 class="section-title" id="aux-title">参考作品</h2>
         <div class="aux-work">
           <figure class="aux-work__media work reveal">
             <span class="work__frame">
@@ -420,7 +418,7 @@
                 src="./images/illustration-07.jpg"
                 width="965"
                 height="1600"
-                alt="넓은 챙 모자를 쓰고 흰 머리를 늘어뜨린 캐릭터의 흑백 상반신 일러스트"
+                alt="つばの大きな帽子をかぶり、白髪を垂らした女性の白黒のイラスト"
                 loading="lazy"
                 decoding="async"
               />
@@ -428,34 +426,34 @@
             <figcaption>Selected work</figcaption>
           </figure>
           <p class="lede measure">
-            공개 작품은 분양 안내와 별도로 감상용으로 배치했습니다. 이후 분양이
-            시작되면 캐릭터별 정보는 별도 영역에서 안내됩니다.
+            こちらの作品は参考作品として掲載しています。販売開始後、各キャラクターの
+            詳細は個別ページにてご案内いたします。
           </p>
         </div>
       </section>
 
       <div class="container"><hr class="divider" /></div>
 
-      <!-- ================= 구매 문의 양식 ================= -->
+      <!-- ================= ご購入時の記入例 ================= -->
       <section
         id="inquiry"
         class="section container"
         aria-labelledby="inquiry-title"
       >
         <p class="eyebrow"><span class="num">08</span> Inquiry</p>
-        <h2 class="section-title" id="inquiry-title">구매 문의 양식</h2>
+        <h2 class="section-title" id="inquiry-title">ご購入時の記入例</h2>
         <p class="lede measure">
-          아래 항목을 함께 전달해 주시면 상담이 빠릅니다. 구매·문의 시 본 공지 및
-          주의사항에 동의한 것으로 간주됩니다.
+          ご購入をご希望の際は、以下の内容をお知らせいただくとスムーズです。
+          ご連絡いただいた時点で、本注意事項に同意いただいたものとみなします。
         </p>
 
         <dl class="form-fields measure" id="inquiry-form">
-          <div><dt>01</dt><dd>신청자명 / 입금자명</dd></div>
-          <div><dt>02</dt><dd>연락 가능한 계정</dd></div>
-          <div><dt>03</dt><dd>구매 희망 캐릭터</dd></div>
-          <div><dt>04</dt><dd>사용 용도 (개인 / 방송 / 상업)</dd></div>
-          <div><dt>05</dt><dd>원하는 수정 사항 (있다면)</dd></div>
-          <div><dt>06</dt><dd>기타 요청사항</dd></div>
+          <div><dt>01</dt><dd>お名前／お振込名義</dd></div>
+          <div><dt>02</dt><dd>ご連絡先（Xアカウントなど）</dd></div>
+          <div><dt>03</dt><dd>ご購入希望のキャラクター</dd></div>
+          <div><dt>04</dt><dd>ご利用目的（個人／配信／商用）</dd></div>
+          <div><dt>05</dt><dd>ご希望の変更点（あれば）</dd></div>
+          <div><dt>06</dt><dd>その他ご要望</dd></div>
         </dl>
 
         <div class="btn-row">
@@ -464,21 +462,21 @@
             class="btn btn--ghost"
             data-copy-form="inquiry-form"
           >
-            양식 항목 복사
+            項目をコピー
           </button>
         </div>
       </section>
 
-      <!-- ================= 7.10 최종 문의 CTA ================= -->
+      <!-- ================= お問い合わせCTA ================= -->
       <section
         id="contact"
         class="section container"
         aria-labelledby="contact-title"
       >
         <div class="cta reveal">
-          <h2 id="contact-title">분양 및 이용 범위 문의</h2>
+          <h2 id="contact-title">ご購入・ご利用に関するお問い合わせ</h2>
           <p>
-            분양 및 이용 범위에 관한 문의는 X DM 또는 이메일로 부탁드립니다.
+            ご購入や利用条件に関するお問い合わせは、XのDMまたはメールでお願いします。
           </p>
           <div class="btn-row">
             <a
@@ -487,18 +485,18 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              X에서 문의하기
-              <span class="visually-hidden">(새 탭으로 열림)</span>
+              XのDMでお問い合わせ
+              <span class="visually-hidden">（新しいタブで開きます）</span>
             </a>
             <a class="btn btn--ghost" href="mailto:koronri091091@gmail.com">
-              이메일로 문의하기
+              メールで問い合わせる
             </a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ================= 푸터 ================= -->
+    <!-- ================= フッター ================= -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -511,14 +509,14 @@
             target="_blank"
             rel="noopener noreferrer"
             >X<span aria-hidden="true">↗</span
-            ><span class="visually-hidden">(새 탭으로 열림)</span></a
+            ><span class="visually-hidden">（新しいタブで開きます）</span></a
           >
           <a
             href="https://www.youtube.com/@qXoX-999p"
             target="_blank"
             rel="noopener noreferrer"
             >YouTube<span aria-hidden="true">↗</span
-            ><span class="visually-hidden">(새 탭으로 열림)</span></a
+            ><span class="visually-hidden">（新しいタブで開きます）</span></a
           >
         </div>
       </div>
@@ -527,16 +525,13 @@
       </div>
     </footer>
 
-    <button class="to-top" type="button" aria-label="맨 위로 이동">
+    <button class="to-top" type="button" aria-label="ページの先頭へ戻る">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
 
-    <!-- 모바일 드로어 내비 + 진입 리빌 인라인 스크립트.
-         JS가 없거나·reduced-motion이거나·오류가 나도 내용은 그대로 보인다. -->
     <script>
-      // ---------- 맨 위로 버튼 ----------
       (function initToTop() {
         try {
           var btn = document.querySelector('.to-top');
@@ -556,7 +551,6 @@
         } catch (e) {}
       })();
 
-      // ---------- 모바일 사이드 드로어 내비 ----------
       (function initNav() {
         try {
           var toggle = document.querySelector('.nav-toggle');
@@ -564,13 +558,8 @@
           var backdrop = document.querySelector('.nav-backdrop');
           var closeBtn = nav ? nav.querySelector('.nav-close') : null;
           if (!toggle || !nav) return;
-
-          function isOpen() {
-            return nav.classList.contains('is-open');
-          }
-          function focusables() {
-            return nav.querySelectorAll('a[href], button:not([disabled])');
-          }
+          function isOpen() { return nav.classList.contains('is-open'); }
+          function focusables() { return nav.querySelectorAll('a[href], button:not([disabled])'); }
           function open() {
             nav.classList.add('is-open');
             if (backdrop) backdrop.classList.add('is-open');
@@ -585,16 +574,12 @@
             document.body.style.overflow = '';
             if (returnFocus !== false) toggle.focus();
           }
-
-          toggle.addEventListener('click', function () {
-            isOpen() ? close() : open();
-          });
+          toggle.addEventListener('click', function () { isOpen() ? close() : open(); });
           if (closeBtn) closeBtn.addEventListener('click', function () { close(); });
           if (backdrop) backdrop.addEventListener('click', function () { close(); });
           nav.querySelectorAll('.site-nav__link').forEach(function (a) {
             a.addEventListener('click', function () { close(false); });
           });
-
           document.addEventListener('keydown', function (e) {
             if (!isOpen()) return;
             if (e.key === 'Escape') { close(); return; }
@@ -606,61 +591,41 @@
               else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
             }
           });
-
           window.addEventListener('resize', function () {
             if (window.innerWidth >= 768 && isOpen()) close(false);
           });
-        } catch (err) {
-          /* 실패해도 데스크톱/노-JS 인라인 내비는 정상 동작 */
-        }
+        } catch (err) {}
       })();
 
-      // ---------- 진입 리빌(스크롤 페이드업) ----------
       (function initReveal() {
         try {
           var reduce =
             window.matchMedia &&
             window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           var targets = document.querySelectorAll('.reveal');
-          if (!targets.length || reduce || !('IntersectionObserver' in window)) {
-            return;
-          }
+          if (!targets.length || reduce || !('IntersectionObserver' in window)) return;
           var root = document.documentElement;
           root.classList.add('reveal-on');
-
-          var show = function (el) {
-            el.classList.add('is-visible');
-          };
+          var show = function (el) { el.classList.add('is-visible'); };
           var io = new IntersectionObserver(
             function (entries, obs) {
               entries.forEach(function (e) {
-                if (e.isIntersecting) {
-                  show(e.target);
-                  obs.unobserve(e.target);
-                }
+                if (e.isIntersecting) { show(e.target); obs.unobserve(e.target); }
               });
             },
             { rootMargin: '0px 0px -10% 0px', threshold: 0.08 }
           );
-          targets.forEach(function (el) {
-            io.observe(el);
-          });
-
-          // 안전망: 최상단 리빌 요소가 일정 시간 뒤에도 드러나지 않으면(관찰자 미동작 환경)
-          // reveal-on을 제거해 기본(보임) 상태로 되돌린다. 내용이 숨겨진 채로 남지 않게 한다.
+          targets.forEach(function (el) { io.observe(el); });
           setTimeout(function () {
             if (targets[0] && !targets[0].classList.contains('is-visible')) {
               root.classList.remove('reveal-on');
             }
           }, 1600);
         } catch (err) {
-          try {
-            document.documentElement.classList.remove('reveal-on');
-          } catch (e2) {}
+          try { document.documentElement.classList.remove('reveal-on'); } catch (e2) {}
         }
       })();
 
-      // ---------- 구매 문의 양식 복사 버튼 ----------
       (function initCopyForm() {
         try {
           var btn = document.querySelector('[data-copy-form]');
@@ -668,7 +633,6 @@
           var sourceId = btn.getAttribute('data-copy-form');
           var source = sourceId ? document.getElementById(sourceId) : null;
           if (!source) return;
-
           function buildText() {
             var rows = source.querySelectorAll(':scope > div');
             var lines = [];
@@ -679,17 +643,13 @@
             });
             return lines.join('\n');
           }
-
           var defaultLabel = btn.textContent;
           var resetTimer = null;
           function flash(message) {
             btn.textContent = message;
             if (resetTimer) clearTimeout(resetTimer);
-            resetTimer = setTimeout(function () {
-              btn.textContent = defaultLabel;
-            }, 2200);
+            resetTimer = setTimeout(function () { btn.textContent = defaultLabel; }, 2200);
           }
-
           function fallbackCopy(text) {
             var ta = document.createElement('textarea');
             ta.value = text;
@@ -700,41 +660,28 @@
             document.body.appendChild(ta);
             ta.select();
             var ok = false;
-            try {
-              ok = document.execCommand('copy');
-            } catch (e) {
-              ok = false;
-            }
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
             document.body.removeChild(ta);
             return ok;
           }
-
           btn.addEventListener('click', async function () {
             var text = buildText();
-            if (!text) {
-              flash('복사할 내용이 없습니다');
-              return;
-            }
+            if (!text) { flash('コピーする内容がありません'); return; }
             try {
               if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(text);
-                flash('양식을 복사했습니다');
+                flash('フォームをコピーしました');
               } else if (fallbackCopy(text)) {
-                flash('양식을 복사했습니다');
+                flash('フォームをコピーしました');
               } else {
-                flash('직접 선택해 복사해 주세요');
+                flash('手動で選択してコピーしてください');
               }
             } catch (e) {
-              if (fallbackCopy(text)) {
-                flash('양식을 복사했습니다');
-              } else {
-                flash('직접 선택해 복사해 주세요');
-              }
+              if (fallbackCopy(text)) flash('フォームをコピーしました');
+              else flash('手動で選択してコピーしてください');
             }
           });
-        } catch (err) {
-          console.warn('[copy-form] 초기화 실패, 복사 기능만 비활성화합니다.', err);
-        }
+        } catch (err) {}
       })();
     </script>
   </body>

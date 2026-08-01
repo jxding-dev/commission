@@ -135,6 +135,11 @@ h3 {
   word-break: keep-all;
 }
 
+/* 일본어는 공백이 적어 keep-all이면 줄바꿈이 되지 않으므로 문자 단위로 자연 분절 */
+html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
+  word-break: normal;
+}
+
 /* ---------- 3. 접근성 ---------- */
 .skip-link {
   position: absolute;
@@ -327,6 +332,12 @@ h3 {
 .site-nav__link .ext {
   font-size: 0.72em;
   color: var(--color-mint); /* 외부 링크 표식 — 민트 보조 강조 */
+}
+
+/* 언어 전환 링크 — 아웃라인 알약으로 구분 */
+.site-nav__link--lang {
+  border: 1px solid var(--color-line-strong);
+  letter-spacing: 0.06em;
 }
 
 /* ---------- 5.3 모바일 사이드 드로어 내비 ----------

@@ -6,7 +6,7 @@
   "description": "ころんり 개인 커미션·캐릭터 분양 공지 사이트",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/postbuild.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {
