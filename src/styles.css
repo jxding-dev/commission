@@ -888,29 +888,70 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
   letter-spacing: 0.08em;
 }
 
-/* 과정 흐름(파이프라인) */
-.flow {
-  margin-top: 1.75rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+/* 과정 흐름 — 번호 노드를 세로 연결선으로 잇는 플로우차트(스텝퍼) */
+.flowchart {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  counter-reset: fc;
 }
 
-.flow li {
+.flowchart__step {
+  position: relative;
+  counter-increment: fc;
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.7rem 1.05rem;
-  border: var(--border);
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+}
+
+.flowchart__step:last-child {
+  padding-bottom: 0;
+}
+
+/* 노드 하단부터 스텝 하단(=다음 노드 상단)까지 잇는 연결선 */
+.flowchart__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 1.125rem;
+  top: 2.25rem;
+  bottom: 0;
+  width: 1.5px;
+  background: var(--color-line-strong);
+  transform: translateX(-0.75px);
+}
+
+.flowchart__node {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 999px;
+  border: 1px solid var(--color-ink);
   background: var(--color-surface);
-  font-weight: 400;
-  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink);
 }
 
-.flow li:not(:last-child)::after {
-  content: "→";
-  color: var(--color-accent);
+.flowchart__node::before {
+  content: counter(fc);
+}
+
+.flowchart__label {
+  padding-top: 0.45rem;
+  color: var(--color-text);
+}
+
+/* 마지막 노드는 완료 강조 (채워진 원) */
+.flowchart__step:last-child .flowchart__node {
+  background: var(--color-ink);
+  color: #fff;
 }
 
 /* ---------- 12. 신청 양식 ---------- */
