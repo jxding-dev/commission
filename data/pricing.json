@@ -1,9 +1,13 @@
 {
   "updatedAt": "2026-08-07",
+  "status": "PREPARING",
+  "announcement": "",
+  "announcementJa": "",
   "note": "아래 가격은 예시이며, 관리자 페이지에서 언제든 수정할 수 있습니다. 방송용은 ×2, 상업용은 별도 문의입니다.",
   "categories": [
     {
       "name": "코론타입 · LD 풀채색",
+      "image": "./data/images/sample-koron.jpg",
       "items": [
         { "name": "두상", "price": "20,000원~" },
         { "name": "흉상", "price": "30,000원~" },
@@ -13,10 +17,12 @@
     },
     {
       "name": "론코타입 · SD 풀채색",
+      "image": "./data/images/sample-ronko.jpg",
       "items": [{ "name": "전신", "price": "25,000원~" }]
     },
     {
       "name": "코코타입 · LD 버츄얼",
+      "image": "./data/images/sample-koko.jpg",
       "items": [
         { "name": "반신", "price": "120,000원~" },
         { "name": "전신", "price": "160,000원~" }
@@ -24,6 +30,7 @@
     },
     {
       "name": "론론타입 · SD 버츄얼",
+      "image": "./data/images/sample-ronron.jpg",
       "items": [{ "name": "전신", "price": "80,000원~" }]
     }
   ],

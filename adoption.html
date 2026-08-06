@@ -25,6 +25,8 @@
       document.documentElement.classList.add('nav-js');
     </script>
     <link rel="stylesheet" href="./src/styles.css" />
+    <!-- 관리자가 설정한 접수 상태·공지를 전역 반영 -->
+    <script type="module" src="./src/site-banner.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -137,7 +139,7 @@
       <section class="section container" aria-labelledby="status-title">
         <p class="eyebrow"><span class="num">01</span> Current Status</p>
         <h2 class="section-title" id="status-title">현재 상태</h2>
-        <p style="margin-top: 1rem"><span class="status">Preparing</span></p>
+        <p style="margin-top: 1rem"><span class="status" data-site-status>Preparing</span></p>
         <p class="lede measure">
           현재 공개된 분양 캐릭터가 없습니다. 새로운 분양 소식은 X를 통해 먼저
           안내됩니다.

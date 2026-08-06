@@ -2,7 +2,7 @@
 // Vite가 페이지 간 <a href="./page.html"> 링크를 해시된 복사본(dist/assets/*.html)으로
 // 바꾸는 알려진 동작이 있어, (1) 중복 해시 HTML을 제거하고 (2) 루트 페이지의 href를
 // 깔끔한 ./page.html 로 복원한다. base './' 유지.
-import { readdir, readFile, writeFile, rm, mkdir, copyFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile, rm, cp } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -40,13 +40,12 @@ async function main() {
       console.log(`[postbuild] 링크 정리: ${f}`);
     }
   }
-  // 3) 가격 데이터(data/pricing.json)를 dist로 복사 (가격 페이지가 런타임에 읽음)
+  // 3) data/ 전체(pricing.json + 업로드 이미지)를 dist로 복사 — 런타임에 읽고 표시
   try {
-    await mkdir(join(dist, 'data'), { recursive: true });
-    await copyFile(join(root, 'data', 'pricing.json'), join(dist, 'data', 'pricing.json'));
-    console.log('[postbuild] data/pricing.json 복사');
+    await cp(join(root, 'data'), join(dist, 'data'), { recursive: true });
+    console.log('[postbuild] data/ 복사');
   } catch (e) {
-    console.warn('[postbuild] pricing.json 복사 건너뜀:', e.message);
+    console.warn('[postbuild] data/ 복사 건너뜀:', e.message);
   }
 
   console.log('[postbuild] 완료');

@@ -88,6 +88,9 @@
       <section class="page-head container">
         <p class="eyebrow"><span class="num">◆</span> Price</p>
         <h1 class="page-head__title">가격 안내</h1>
+        <p style="margin-top: 1rem">
+          <span class="status" data-site-status>준비 중</span>
+        </p>
         <p class="lede measure" id="price-note">불러오는 중…</p>
       </section>
 
@@ -159,6 +162,7 @@
       </svg>
     </button>
 
+    <script type="module" src="./src/site-banner.js"></script>
     <script>
       // ---------- 가격 데이터 렌더 ----------
       (function renderPricing() {
@@ -189,8 +193,17 @@
             document.getElementById('price-note').textContent = data.note || '';
             var cats = (data.categories || [])
               .map(function (c) {
+                var img = c.image
+                  ? '<span class="price-cat__frame"><img class="price-cat__img" src="' +
+                    esc(c.image) +
+                    '" alt="' +
+                    esc(c.name) +
+                    ' 샘플 이미지" loading="lazy" decoding="async"></span>'
+                  : '';
                 return (
-                  '<div class="price-cat"><h3 class="price-cat__title">' +
+                  '<div class="price-cat">' +
+                  img +
+                  '<h3 class="price-cat__title">' +
                   esc(c.name) +
                   '</h3>' +
                   rows(c.items) +
