@@ -8,11 +8,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        // 다중 페이지 빌드: 한국어·일본어 4개 페이지를 모두 결과물에 포함한다.
+        // 다중 페이지 빌드: 안내(KO/JA) + 가격 + 관리자 페이지를 모두 결과물에 포함한다.
         index: resolve(__dirname, 'index.html'),
         adoption: resolve(__dirname, 'adoption.html'),
         'index-ja': resolve(__dirname, 'index-ja.html'),
         'adoption-ja': resolve(__dirname, 'adoption-ja.html'),
+        pricing: resolve(__dirname, 'pricing.html'),
+        admin: resolve(__dirname, 'admin.html'),
       },
     },
   },

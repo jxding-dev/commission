@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>가격 관리자 — ころんり</title>
+    <script>
+      document.documentElement.classList.add('nav-js');
+    </script>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="./index.html"
+          >ころんり<span class="brand__tag">Admin</span></a
+        >
+        <a class="site-nav__link site-nav__link--lang" href="./pricing.html"
+          >가격 페이지 보기</a
+        >
+      </div>
+    </header>
+
+    <main id="main" class="container section">
+      <p class="eyebrow"><span class="num">◆</span> Admin</p>
+      <h1 class="section-title">가격 관리자</h1>
+      <p class="lede measure">
+        여기서 가격을 수정하고 <strong>저장</strong>하면 사이트에 자동으로
+        반영됩니다. (반영까지 약 1~2분 소요)
+      </p>
+
+      <!-- 토큰 설정 -->
+      <section id="token-gate" class="measure" hidden>
+        <div class="admin-note">
+          <p style="margin-bottom: 0.6rem">
+            <strong>최초 1회 설정</strong> — 저장 권한을 위해 GitHub 토큰이
+            필요합니다.
+          </p>
+          <ol style="padding-left: 1.1rem; display: grid; gap: 0.35rem">
+            <li>
+              GitHub → Settings → Developer settings →
+              <strong>Fine-grained tokens</strong> → Generate new token
+            </li>
+            <li>
+              Repository access: <code>jxding-dev/commission</code> 선택
+            </li>
+            <li>
+              Permissions → Repository → <strong>Contents: Read and write</strong>
+            </li>
+            <li>생성된 토큰을 아래에 붙여넣고 저장하세요.</li>
+          </ol>
+          <p style="margin-top: 0.6rem; font-size: 0.82rem">
+            토큰은 이 브라우저에만 저장되며 GitHub 외 어디에도 전송되지 않습니다.
+            공용 PC에서는 사용 후 <em>토큰 지우기</em>를 눌러주세요.
+          </p>
+        </div>
+        <div class="admin-field">
+          <label for="token-input">GitHub 토큰</label>
+          <input
+            id="token-input"
+            class="admin-input"
+            type="password"
+            autocomplete="off"
+            placeholder="github_pat_..."
+          />
+        </div>
+        <div class="btn-row">
+          <button id="token-save" type="button" class="btn btn--primary">
+            토큰 저장 후 불러오기
+          </button>
+        </div>
+        <p id="token-status" class="admin-status"></p>
+      </section>
+
+      <!-- 편집기 -->
+      <section id="editor" class="measure" hidden>
+        <div class="admin-field">
+          <label for="note">안내 문구</label>
+          <textarea id="note" class="admin-textarea"></textarea>
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.2rem; margin-top: 2rem">
+          타입별 가격
+        </h2>
+        <div id="categories"></div>
+        <button id="add-category" type="button" class="admin-addbtn">
+          + 카테고리 추가
+        </button>
+
+        <h2 class="section-title" style="font-size: 1.2rem; margin-top: 2.5rem">
+          추가 옵션
+        </h2>
+        <div id="options" class="admin-cat"></div>
+        <button id="add-option" type="button" class="admin-addbtn">
+          + 옵션 추가
+        </button>
+
+        <div class="btn-row">
+          <button id="save" type="button" class="btn btn--primary">저장</button>
+          <button id="reload" type="button" class="btn btn--ghost">
+            다시 불러오기
+          </button>
+          <button id="clear-token" type="button" class="btn btn--ghost">
+            토큰 지우기
+          </button>
+        </div>
+        <p id="status" class="admin-status"></p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var OWNER = 'jxding-dev';
+        var REPO = 'commission';
+        var BRANCH = 'main';
+        var PATH = 'data/pricing.json';
+        var TOKEN_KEY = 'koronri_gh_pat';
+        var API =
+          'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + PATH;
+
+        var $ = function (id) { return document.getElementById(id); };
+        var currentSha = null;
+
+        function b64encode(str) {
+          return btoa(unescape(encodeURIComponent(str)));
+        }
+        function b64decode(b64) {
+          return decodeURIComponent(escape(atob(b64.replace(/\s/g, ''))));
+        }
+        function today() {
+          var d = new Date();
+          var m = ('0' + (d.getMonth() + 1)).slice(-2);
+          var day = ('0' + d.getDate()).slice(-2);
+          return d.getFullYear() + '-' + m + '-' + day;
+        }
+        function getToken() { return localStorage.getItem(TOKEN_KEY); }
+
+        function status(el, msg, kind) {
+          el.textContent = msg;
+          el.className =
+            'admin-status' + (kind ? ' admin-status--' + kind : '');
+        }
+
+        // ---------- 폼 렌더 ----------
+        function makeRow(name, price, nameClass, priceClass) {
+          var row = document.createElement('div');
+          row.className = 'admin-row';
+          row.innerHTML =
+            '<input class="admin-input admin-row__name ' + nameClass +
+            '" type="text" placeholder="이름">' +
+            '<input class="admin-input admin-row__price ' + priceClass +
+            '" type="text" placeholder="가격">' +
+            '<button type="button" class="admin-remove" aria-label="삭제">×</button>';
+          row.querySelector('.' + nameClass).value = name || '';
+          row.querySelector('.' + priceClass).value = price || '';
+          row.querySelector('.admin-remove').addEventListener('click', function () {
+            row.remove();
+          });
+          return row;
+        }
+
+        function makeCategory(cat) {
+          cat = cat || { name: '', items: [] };
+          var box = document.createElement('div');
+          box.className = 'admin-cat';
+          var head = document.createElement('div');
+          head.className = 'admin-row';
+          head.innerHTML =
+            '<input class="admin-input admin-row__name cat-name" type="text" placeholder="카테고리 이름">' +
+            '<button type="button" class="admin-remove" aria-label="카테고리 삭제">×</button>';
+          head.querySelector('.cat-name').value = cat.name || '';
+          head.querySelector('.admin-remove').addEventListener('click', function () {
+            box.remove();
+          });
+          box.appendChild(head);
+
+          var items = document.createElement('div');
+          items.className = 'items';
+          (cat.items || []).forEach(function (it) {
+            items.appendChild(makeRow(it.name, it.price, 'item-name', 'item-price'));
+          });
+          box.appendChild(items);
+
+          var addItem = document.createElement('button');
+          addItem.type = 'button';
+          addItem.className = 'admin-addbtn';
+          addItem.textContent = '+ 항목 추가';
+          addItem.addEventListener('click', function () {
+            items.appendChild(makeRow('', '', 'item-name', 'item-price'));
+          });
+          box.appendChild(addItem);
+          return box;
+        }
+
+        function renderForm(data) {
+          $('note').value = data.note || '';
+          var cats = $('categories');
+          cats.innerHTML = '';
+          (data.categories || []).forEach(function (c) {
+            cats.appendChild(makeCategory(c));
+          });
+          var opts = $('options');
+          opts.innerHTML = '';
+          (data.options || []).forEach(function (o) {
+            opts.appendChild(makeRow(o.name, o.price, 'opt-name', 'opt-price'));
+          });
+        }
+
+        function collectData() {
+          var cats = [].map.call(
+            document.querySelectorAll('#categories .admin-cat'),
+            function (box) {
+              return {
+                name: box.querySelector('.cat-name').value.trim(),
+                items: [].map
+                  .call(box.querySelectorAll('.items .admin-row'), function (r) {
+                    return {
+                      name: r.querySelector('.item-name').value.trim(),
+                      price: r.querySelector('.item-price').value.trim(),
+                    };
+                  })
+                  .filter(function (it) { return it.name || it.price; }),
+              };
+            }
+          ).filter(function (c) { return c.name || c.items.length; });
+
+          var options = [].map
+            .call($('options').querySelectorAll('.admin-row'), function (r) {
+              return {
+                name: r.querySelector('.opt-name').value.trim(),
+                price: r.querySelector('.opt-price').value.trim(),
+              };
+            })
+            .filter(function (o) { return o.name || o.price; });
+
+          return {
+            updatedAt: today(),
+            note: $('note').value.trim(),
+            categories: cats,
+            options: options,
+          };
+        }
+
+        // ---------- GitHub API ----------
+        function showGate() {
+          $('token-gate').hidden = false;
+          $('editor').hidden = true;
+        }
+        function showEditor() {
+          $('token-gate').hidden = true;
+          $('editor').hidden = false;
+        }
+
+        function loadData() {
+          var token = getToken();
+          if (!token) { showGate(); return; }
+          status($('status'), '불러오는 중…', null);
+          fetch(API + '?ref=' + BRANCH, {
+            headers: {
+              Authorization: 'Bearer ' + token,
+              Accept: 'application/vnd.github+json',
+            },
+          })
+            .then(function (r) {
+              if (r.status === 401) throw new Error('AUTH');
+              if (!r.ok) throw new Error('HTTP ' + r.status);
+              return r.json();
+            })
+            .then(function (json) {
+              currentSha = json.sha;
+              var data = JSON.parse(b64decode(json.content));
+              renderForm(data);
+              showEditor();
+              status($('status'), '', null);
+            })
+            .catch(function (e) {
+              if (e.message === 'AUTH') {
+                status($('token-status'), '토큰이 유효하지 않거나 권한이 없습니다.', 'err');
+                showGate();
+              } else {
+                showEditor();
+                status($('status'), '불러오기 실패: ' + e.message, 'err');
+              }
+            });
+        }
+
+        function save() {
+          var token = getToken();
+          if (!token) { showGate(); return; }
+          var data = collectData();
+          var content = b64encode(JSON.stringify(data, null, 2) + '\n');
+          status($('status'), '저장 중…', null);
+          fetch(API, {
+            method: 'PUT',
+            headers: {
+              Authorization: 'Bearer ' + token,
+              Accept: 'application/vnd.github+json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: 'chore(admin): 가격표 업데이트',
+              content: content,
+              sha: currentSha,
+              branch: BRANCH,
+            }),
+          })
+            .then(function (r) {
+              if (r.status === 401) throw new Error('AUTH');
+              if (r.status === 409) throw new Error('CONFLICT');
+              if (!r.ok) return r.json().then(function (j) {
+                throw new Error(j.message || 'HTTP ' + r.status);
+              });
+              return r.json();
+            })
+            .then(function (json) {
+              currentSha = json.content.sha;
+              status(
+                $('status'),
+                '저장되었습니다. 약 1~2분 뒤 사이트에 반영됩니다.',
+                'ok'
+              );
+            })
+            .catch(function (e) {
+              if (e.message === 'AUTH') {
+                status($('status'), '토큰이 유효하지 않습니다. 토큰을 다시 설정해 주세요.', 'err');
+              } else if (e.message === 'CONFLICT') {
+                status($('status'), '다른 곳에서 먼저 저장되었습니다. 다시 불러온 뒤 저장해 주세요.', 'err');
+              } else {
+                status($('status'), '저장 실패: ' + e.message, 'err');
+              }
+            });
+        }
+
+        // ---------- 이벤트 ----------
+        $('token-save').addEventListener('click', function () {
+          var t = $('token-input').value.trim();
+          if (!t) { status($('token-status'), '토큰을 입력해 주세요.', 'err'); return; }
+          localStorage.setItem(TOKEN_KEY, t);
+          $('token-input').value = '';
+          loadData();
+        });
+        $('save').addEventListener('click', save);
+        $('reload').addEventListener('click', loadData);
+        $('add-category').addEventListener('click', function () {
+          $('categories').appendChild(makeCategory());
+        });
+        $('add-option').addEventListener('click', function () {
+          $('options').appendChild(makeRow('', '', 'opt-name', 'opt-price'));
+        });
+        $('clear-token').addEventListener('click', function () {
+          localStorage.removeItem(TOKEN_KEY);
+          currentSha = null;
+          showGate();
+          status($('token-status'), '토큰을 지웠습니다.', null);
+        });
+
+        // 시작
+        loadData();
+      })();
+    </script>
+  </body>
+</html>

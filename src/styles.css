@@ -352,7 +352,7 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
   display: none;
 }
 
-@media (max-width: 47.99em) {
+@media (max-width: 55.99em) {
   :root.nav-js .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -1430,4 +1430,160 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
 .to-top:hover {
   color: var(--color-accent-dark);
   border-color: var(--color-accent);
+}
+
+/* ---------- 22. 가격표 ---------- */
+.price-cat {
+  margin-top: 2.25rem;
+}
+
+.price-cat__title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 0.9rem 0.25rem;
+  border-bottom: var(--border);
+}
+
+.price-row__name {
+  color: var(--color-text);
+}
+
+.price-row__price {
+  color: var(--color-ink);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.price-updated {
+  color: var(--color-faint);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  margin-top: 1.75rem;
+}
+
+/* ---------- 23. 관리자 페이지 ---------- */
+.admin-note {
+  margin-top: 1.25rem;
+  padding: 1.15rem 1.3rem;
+  border: var(--border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-2);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.admin-field {
+  margin-top: 1.25rem;
+}
+
+.admin-field > label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  margin-bottom: 0.5rem;
+}
+
+.admin-input,
+.admin-textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-sm, 12px);
+  padding: 0.7rem 0.9rem;
+}
+
+.admin-textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.admin-cat {
+  margin-top: 1.5rem;
+  padding: 1.15rem 1.2rem;
+  border: var(--border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.admin-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.admin-row .admin-input {
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+}
+
+.admin-row__name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.admin-row__price {
+  flex: 0 0 40%;
+  min-width: 0;
+}
+
+.admin-remove {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-strong);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.admin-remove:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+.admin-addbtn {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-dark);
+  background: transparent;
+  border: 1px dashed var(--color-line-strong);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.admin-addbtn:hover {
+  border-color: var(--color-accent);
+}
+
+.admin-status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  min-height: 1.4em;
+}
+
+.admin-status--ok {
+  color: var(--color-mint);
+}
+
+.admin-status--err {
+  color: var(--color-accent-dark);
 }
