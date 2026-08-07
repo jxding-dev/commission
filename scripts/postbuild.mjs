@@ -3,6 +3,7 @@
 // 바꾸는 알려진 동작이 있어, (1) 중복 해시 HTML을 제거하고 (2) 루트 페이지의 href를
 // 깔끔한 ./page.html 로 복원한다. base './' 유지.
 import { readdir, readFile, writeFile, rm, cp } from 'node:fs/promises';
+import { copyFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -46,6 +47,14 @@ async function main() {
     console.log('[postbuild] data/ 복사');
   } catch (e) {
     console.warn('[postbuild] data/ 복사 건너뜀:', e.message);
+  }
+
+  // 4) 커스텀 404 페이지 복사 — 잘못된 경로 접근 시 브랜드 페이지 노출
+  try {
+    await copyFile(join(root, '404.html'), join(dist, '404.html'));
+    console.log('[postbuild] 404.html 복사');
+  } catch (e) {
+    console.warn('[postbuild] 404.html 복사 건너뜀:', e.message);
   }
 
   console.log('[postbuild] 완료');

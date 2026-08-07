@@ -1694,3 +1694,71 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
   text-align: center;
   justify-self: start;
 }
+
+/* ============================================================
+   인쇄용 — 약관·가격을 깔끔한 문서로 출력
+   ============================================================ */
+@media print {
+  :root {
+    --shadow-media: none;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  /* 화면 전용 UI 숨김 */
+  .site-header,
+  .site-banner,
+  .nav-toggle,
+  .nav-backdrop,
+  .to-top,
+  .skip-link,
+  .btn-row,
+  .cta .btn {
+    display: none !important;
+  }
+  main#main {
+    padding-top: 0 !important;
+  }
+  /* 색·그림자 제거해 잉크 절약 및 가독성 확보 */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+  .section,
+  .page-head {
+    padding-top: 1.1rem !important;
+    padding-bottom: 1.1rem !important;
+  }
+  /* 항목·표·카드가 페이지 경계에서 잘리지 않도록 */
+  .price-cat,
+  .price-row,
+  .faq details,
+  .usage-table,
+  tr,
+  .flowchart__step,
+  figure,
+  img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .price-cat__img,
+  img {
+    max-width: 55mm !important;
+    height: auto !important;
+  }
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  /* 링크 뒤에 URL 노출하지 않음(문서가 지저분해지는 것 방지) */
+  a[href]:after {
+    content: '' !important;
+  }
+}
