@@ -14,6 +14,7 @@ export default defineConfig({
         'index-ja': resolve(__dirname, 'index-ja.html'),
         'adoption-ja': resolve(__dirname, 'adoption-ja.html'),
         pricing: resolve(__dirname, 'pricing.html'),
+        'pricing-ja': resolve(__dirname, 'pricing-ja.html'),
         admin: resolve(__dirname, 'admin.html'),
       },
     },

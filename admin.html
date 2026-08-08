@@ -93,13 +93,21 @@
           <textarea id="ann-ja" class="admin-textarea" placeholder="例) 8月のコミッション受付を開始しました！"></textarea>
         </div>
         <div class="admin-field">
-          <label for="note">가격 안내 문구</label>
+          <label for="note">가격 안내 문구 · 한국어</label>
           <textarea id="note" class="admin-textarea"></textarea>
+        </div>
+        <div class="admin-field">
+          <label for="note-ja">가격 안내 문구 · 일본어</label>
+          <textarea id="note-ja" class="admin-textarea"></textarea>
         </div>
 
         <h2 class="section-title" style="font-size: 1.2rem; margin-top: 2.25rem">
           타입별 가격 · 샘플 이미지
         </h2>
+        <p class="admin-note" style="margin-top: 0.5rem">
+          각 항목의 이름·가격은 <strong>한국어 / 일본어</strong>를 함께 입력합니다.
+          일본어 칸을 비우면 일본어 페이지에서 한국어 값이 그대로 표시됩니다.
+        </p>
         <div id="categories"></div>
         <button id="add-category" type="button" class="admin-addbtn">
           + 카테고리 추가
@@ -161,15 +169,25 @@
         }
 
         // ---------- 폼 구성요소 ----------
-        function makeRow(name, price, nameClass, priceClass) {
+        // 한 행 = 이름(한/일) + 가격(한/일) + 삭제. prefix 로 클래스 구분(item/opt)
+        function makeRow(data, prefix) {
+          data = data || {};
           var row = document.createElement('div');
           row.className = 'admin-row';
           row.innerHTML =
-            '<input class="admin-input admin-row__name ' + nameClass + '" type="text" placeholder="이름">' +
-            '<input class="admin-input admin-row__price ' + priceClass + '" type="text" placeholder="가격">' +
+            '<div class="admin-row__group admin-row__group--name">' +
+              '<input class="admin-input ' + prefix + '-name" type="text" placeholder="이름 (한국어)">' +
+              '<input class="admin-input ' + prefix + '-nameja" type="text" lang="ja" placeholder="名前 (日本語)">' +
+            '</div>' +
+            '<div class="admin-row__group admin-row__group--price">' +
+              '<input class="admin-input ' + prefix + '-price" type="text" placeholder="가격 (한국어)">' +
+              '<input class="admin-input ' + prefix + '-priceja" type="text" lang="ja" placeholder="価格 (日本語)">' +
+            '</div>' +
             '<button type="button" class="admin-remove" aria-label="삭제">×</button>';
-          row.querySelector('.' + nameClass).value = name || '';
-          row.querySelector('.' + priceClass).value = price || '';
+          row.querySelector('.' + prefix + '-name').value = data.name || '';
+          row.querySelector('.' + prefix + '-nameja').value = data.nameJa || '';
+          row.querySelector('.' + prefix + '-price').value = data.price || '';
+          row.querySelector('.' + prefix + '-priceja').value = data.priceJa || '';
           row.querySelector('.admin-remove').addEventListener('click', function () { row.remove(); });
           return row;
         }
@@ -238,9 +256,13 @@
           var head = document.createElement('div');
           head.className = 'admin-row';
           head.innerHTML =
-            '<input class="admin-input admin-row__name cat-name" type="text" placeholder="카테고리 이름">' +
+            '<div class="admin-row__group admin-row__group--name">' +
+              '<input class="admin-input cat-name" type="text" placeholder="카테고리 이름 (한국어)">' +
+              '<input class="admin-input cat-nameja" type="text" lang="ja" placeholder="カテゴリ名 (日本語)">' +
+            '</div>' +
             '<button type="button" class="admin-remove" aria-label="카테고리 삭제">×</button>';
           head.querySelector('.cat-name').value = cat.name || '';
+          head.querySelector('.cat-nameja').value = cat.nameJa || '';
           head.querySelector('.admin-remove').addEventListener('click', function () { box.remove(); });
           box.appendChild(head);
 
@@ -266,7 +288,7 @@
           var items = document.createElement('div');
           items.className = 'items';
           (cat.items || []).forEach(function (it) {
-            items.appendChild(makeRow(it.name, it.price, 'item-name', 'item-price'));
+            items.appendChild(makeRow(it, 'item'));
           });
           box.appendChild(items);
 
@@ -275,7 +297,7 @@
           addItem.className = 'admin-addbtn';
           addItem.textContent = '+ 항목 추가';
           addItem.addEventListener('click', function () {
-            items.appendChild(makeRow('', '', 'item-name', 'item-price'));
+            items.appendChild(makeRow(null, 'item'));
           });
           box.appendChild(addItem);
           return box;
@@ -289,6 +311,7 @@
           $('ann-ko').value = data.announcement || '';
           $('ann-ja').value = data.announcementJa || '';
           $('note').value = data.note || '';
+          $('note-ja').value = data.noteJa || '';
 
           var cats = $('categories');
           cats.innerHTML = '';
@@ -297,7 +320,7 @@
           var opts = $('options');
           opts.innerHTML = '';
           (data.options || []).forEach(function (o) {
-            opts.appendChild(makeRow(o.name, o.price, 'opt-name', 'opt-price'));
+            opts.appendChild(makeRow(o, 'opt'));
           });
         }
 
@@ -308,27 +331,32 @@
             function (box) {
               return {
                 name: box.querySelector('.cat-name').value.trim(),
+                nameJa: box.querySelector('.cat-nameja').value.trim(),
                 image: box.querySelector('.cat-image').value.trim(),
                 items: [].map
                   .call(box.querySelectorAll('.items .admin-row'), function (r) {
                     return {
                       name: r.querySelector('.item-name').value.trim(),
+                      nameJa: r.querySelector('.item-nameja').value.trim(),
                       price: r.querySelector('.item-price').value.trim(),
+                      priceJa: r.querySelector('.item-priceja').value.trim(),
                     };
                   })
-                  .filter(function (it) { return it.name || it.price; }),
+                  .filter(function (it) { return it.name || it.nameJa || it.price || it.priceJa; }),
               };
             }
-          ).filter(function (c) { return c.name || c.items.length || c.image; });
+          ).filter(function (c) { return c.name || c.nameJa || c.items.length || c.image; });
 
           var options = [].map
             .call($('options').querySelectorAll('.admin-row'), function (r) {
               return {
                 name: r.querySelector('.opt-name').value.trim(),
+                nameJa: r.querySelector('.opt-nameja').value.trim(),
                 price: r.querySelector('.opt-price').value.trim(),
+                priceJa: r.querySelector('.opt-priceja').value.trim(),
               };
             })
-            .filter(function (o) { return o.name || o.price; });
+            .filter(function (o) { return o.name || o.nameJa || o.price || o.priceJa; });
 
           return {
             updatedAt: today(),
@@ -336,6 +364,7 @@
             announcement: $('ann-ko').value.trim(),
             announcementJa: $('ann-ja').value.trim(),
             note: $('note').value.trim(),
+            noteJa: $('note-ja').value.trim(),
             categories: cats,
             options: options,
           };
@@ -418,7 +447,7 @@
           $('categories').appendChild(makeCategory());
         });
         $('add-option').addEventListener('click', function () {
-          $('options').appendChild(makeRow('', '', 'opt-name', 'opt-price'));
+          $('options').appendChild(makeRow(null, 'opt'));
         });
         $('clear-token').addEventListener('click', function () {
           localStorage.removeItem(TOKEN_KEY);

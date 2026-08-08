@@ -12,7 +12,7 @@ const dist = join(root, 'dist');
 const assetsDir = join(dist, 'assets');
 
 // 페이지 이름은 반드시 긴 것부터(“index-ja”가 “index”보다 먼저 매칭되도록)
-const pages = ['index-ja', 'adoption-ja', 'index', 'adoption', 'pricing', 'admin'];
+const pages = ['index-ja', 'adoption-ja', 'pricing-ja', 'index', 'adoption', 'pricing', 'admin'];
 const hashedHtmlRe = new RegExp(
   '\\.?/?assets/(' + pages.join('|') + ')-[0-9a-f]+\\.html',
   'g'

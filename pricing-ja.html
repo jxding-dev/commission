@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314110e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23e11d29'/%3E%3C/svg%3E" />
-    <title>ころんり — 가격 안내</title>
+    <title>ころんり — 料金について</title>
     <meta
       name="description"
-      content="ころんり의 커미션 타입별 가격 및 추가 옵션 안내입니다."
+      content="ころんりのご依頼タイプ別の料金・追加オプションのご案内です。"
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="ころんり — 가격 안내" />
+    <meta property="og:title" content="ころんり — 料金について" />
     <meta
       property="og:description"
-      content="ころんり의 커미션 타입별 가격 및 추가 옵션 안내입니다."
+      content="ころんりのご依頼タイプ別の料金・追加オプションのご案内です。"
     />
     <meta property="og:image" content="./images/illustration-13.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -29,11 +29,11 @@
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <a class="skip-link" href="#main">本文へスキップ</a>
 
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="brand" href="./index.html"
+        <a class="brand" href="./index-ja.html"
           >ころんり<span class="brand__tag">Studio</span></a
         >
         <button
@@ -41,14 +41,14 @@
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
-          aria-label="메뉴 열기"
+          aria-label="メニューを開く"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
           </svg>
         </button>
-        <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
-          <button class="nav-close" type="button" aria-label="메뉴 닫기">
+        <nav class="site-nav" id="site-nav" aria-label="メインメニュー">
+          <button class="nav-close" type="button" aria-label="メニューを閉じる">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
             </svg>
@@ -57,16 +57,16 @@
             <li>
               <a
                 class="site-nav__link site-nav__link--lang"
-                href="./pricing-ja.html"
-                hreflang="ja"
-                lang="ja"
-                >日本語</a
+                href="./pricing.html"
+                hreflang="ko"
+                lang="ko"
+                >한국어</a
               >
             </li>
-            <li><a class="site-nav__link" href="./index.html">Commission</a></li>
-            <li><a class="site-nav__link" href="./adoption.html">Adoption</a></li>
+            <li><a class="site-nav__link" href="./index-ja.html">Commission</a></li>
+            <li><a class="site-nav__link" href="./adoption-ja.html">Adoption</a></li>
             <li>
-              <a class="site-nav__link" href="./pricing.html" aria-current="page"
+              <a class="site-nav__link" href="./pricing-ja.html" aria-current="page"
                 >Price</a
               >
             </li>
@@ -78,7 +78,7 @@
                 rel="noopener noreferrer"
               >
                 X<span class="ext" aria-hidden="true">↗</span>
-                <span class="visually-hidden">(새 탭으로 열림)</span>
+                <span class="visually-hidden">（新しいタブで開きます）</span>
               </a>
             </li>
             <li>
@@ -89,7 +89,7 @@
                 rel="noopener noreferrer"
               >
                 YouTube<span class="ext" aria-hidden="true">↗</span>
-                <span class="visually-hidden">(새 탭으로 열림)</span>
+                <span class="visually-hidden">（新しいタブで開きます）</span>
               </a>
             </li>
           </ul>
@@ -101,15 +101,15 @@
     <main id="main">
       <section class="page-head container">
         <p class="eyebrow"><span class="num">◆</span> Price</p>
-        <h1 class="page-head__title">가격 안내</h1>
+        <h1 class="page-head__title">料金について</h1>
         <p style="margin-top: 1rem">
-          <span class="status" data-site-status>준비 중</span>
+          <span class="status" data-site-status>準備中</span>
         </p>
-        <p class="lede measure" id="price-note">불러오는 중…</p>
+        <p class="lede measure" id="price-note">読み込み中…</p>
       </section>
 
       <section class="section container" aria-labelledby="price-types-title">
-        <h2 class="visually-hidden" id="price-types-title">타입별 가격</h2>
+        <h2 class="visually-hidden" id="price-types-title">タイプ別料金</h2>
         <div id="price-categories" class="measure"></div>
       </section>
 
@@ -117,7 +117,7 @@
 
       <section class="section container" aria-labelledby="price-options-title">
         <p class="eyebrow"><span class="num">—</span> Options</p>
-        <h2 class="section-title" id="price-options-title">추가 옵션</h2>
+        <h2 class="section-title" id="price-options-title">追加オプション</h2>
         <div id="price-options" class="measure"></div>
         <p class="price-updated" id="price-updated"></p>
       </section>
@@ -128,8 +128,8 @@
         aria-labelledby="price-contact-title"
       >
         <div class="cta">
-          <h2 id="price-contact-title">문의</h2>
-          <p>정확한 견적과 신청은 X DM 또는 이메일로 부탁드립니다.</p>
+          <h2 id="price-contact-title">お問い合わせ</h2>
+          <p>正確なお見積り・お申し込みは X の DM またはメールへお願いします。</p>
           <div class="btn-row">
             <a
               class="btn btn--primary"
@@ -137,11 +137,11 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              X에서 문의하기
-              <span class="visually-hidden">(새 탭으로 열림)</span>
+              X でお問い合わせ
+              <span class="visually-hidden">（新しいタブで開きます）</span>
             </a>
             <a class="btn btn--ghost" href="mailto:koronri091091@gmail.com">
-              이메일로 문의하기
+              メールでお問い合わせ
             </a>
           </div>
         </div>
@@ -157,11 +157,11 @@
         <div class="site-footer__links">
           <a href="https://x.com/88xoxox88" target="_blank" rel="noopener noreferrer"
             >X<span aria-hidden="true">↗</span
-            ><span class="visually-hidden">(새 탭으로 열림)</span></a
+            ><span class="visually-hidden">（新しいタブで開きます）</span></a
           >
           <a href="https://www.youtube.com/@qXoX-999p" target="_blank" rel="noopener noreferrer"
             >YouTube<span aria-hidden="true">↗</span
-            ><span class="visually-hidden">(새 탭으로 열림)</span></a
+            ><span class="visually-hidden">（新しいタブで開きます）</span></a
           >
         </div>
       </div>
@@ -170,7 +170,7 @@
       </div>
     </footer>
 
-    <button class="to-top" type="button" aria-label="맨 위로 이동">
+    <button class="to-top" type="button" aria-label="先頭へ戻る">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
@@ -178,21 +178,23 @@
 
     <script type="module" src="./src/site-banner.js"></script>
     <script>
-      // ---------- 가격 데이터 렌더 ----------
+      // ---------- 料金データ描画（日本語優先・韓国語フォールバック） ----------
       (function renderPricing() {
         var esc = function (s) {
           return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
           });
         };
+        var jname = function (o) { return (o && (o.nameJa || o.name)) || ''; };
+        var jprice = function (o) { return (o && (o.priceJa || o.price)) || ''; };
         function rows(items) {
           return (items || [])
             .map(function (it) {
               return (
                 '<div class="price-row"><span class="price-row__name">' +
-                esc(it.name) +
+                esc(jname(it)) +
                 '</span><span class="price-row__price">' +
-                esc(it.price) +
+                esc(jprice(it)) +
                 '</span></div>'
               );
             })
@@ -204,21 +206,22 @@
             return r.json();
           })
           .then(function (data) {
-            document.getElementById('price-note').textContent = data.note || '';
+            document.getElementById('price-note').textContent =
+              data.noteJa || data.note || '';
             var cats = (data.categories || [])
               .map(function (c) {
                 var img = c.image
                   ? '<span class="price-cat__frame"><img class="price-cat__img" src="' +
                     esc(c.image) +
                     '" alt="' +
-                    esc(c.name) +
-                    ' 샘플 이미지" loading="lazy" decoding="async"></span>'
+                    esc(jname(c)) +
+                    ' サンプル画像" loading="lazy" decoding="async"></span>'
                   : '';
                 return (
                   '<div class="price-cat">' +
                   img +
                   '<h3 class="price-cat__title">' +
-                  esc(c.name) +
+                  esc(jname(c)) +
                   '</h3>' +
                   rows(c.items) +
                   '</div>'
@@ -226,21 +229,21 @@
               })
               .join('');
             document.getElementById('price-categories').innerHTML =
-              cats || '<p class="lede">준비 중입니다.</p>';
+              cats || '<p class="lede">準備中です。</p>';
             document.getElementById('price-options').innerHTML =
-              rows(data.options) || '<p class="lede">준비 중입니다.</p>';
+              rows(data.options) || '<p class="lede">準備中です。</p>';
             if (data.updatedAt) {
               document.getElementById('price-updated').textContent =
-                '최종 업데이트 · ' + data.updatedAt;
+                '最終更新 · ' + data.updatedAt;
             }
           })
           .catch(function () {
             document.getElementById('price-note').textContent =
-              '가격 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+              '価格情報を読み込めませんでした。しばらくしてからもう一度お試しください。';
           });
       })();
 
-      // ---------- 맨 위로 버튼 ----------
+      // ---------- 先頭へ戻るボタン ----------
       (function initToTop() {
         try {
           var btn = document.querySelector('.to-top');
@@ -260,7 +263,7 @@
         } catch (e) {}
       })();
 
-      // ---------- 모바일 드로어 내비 ----------
+      // ---------- モバイルドロワーナビ ----------
       (function initNav() {
         try {
           var toggle = document.querySelector('.nav-toggle');

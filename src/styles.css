@@ -1522,13 +1522,30 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
 .admin-row {
   display: flex;
   gap: 0.6rem;
-  align-items: center;
-  margin-top: 0.6rem;
+  align-items: flex-start;
+  margin-top: 0.8rem;
 }
 
 .admin-row .admin-input {
   border-radius: 999px;
   padding: 0.55rem 0.9rem;
+}
+
+/* 한국어/일본어 입력을 세로로 묶는 그룹 (이름 그룹 / 가격 그룹) */
+.admin-row__group {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.admin-row__group--name {
+  flex: 1 1 auto;
+}
+.admin-row__group--price {
+  flex: 0 0 38%;
+}
+.admin-row .admin-remove {
+  align-self: flex-start;
+  margin-top: 0.15rem;
 }
 
 .admin-row__name {
@@ -1539,6 +1556,12 @@ html[lang="ja"] :is(p, li, dd, dt, h1, h2, h3) {
 .admin-row__price {
   flex: 0 0 40%;
   min-width: 0;
+}
+
+@media (max-width: 34rem) {
+  .admin-row__group--price {
+    flex-basis: 46%;
+  }
 }
 
 .admin-remove {
