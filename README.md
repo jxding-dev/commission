@@ -14,6 +14,7 @@ Vite + 순수 HTML/CSS/최소 Vanilla JS로 구성되며 프레임워크는 사�
 | `pricing.html` | 타입별 가격 · 옵션 (관리자 갱신) | 한국어 |
 | `index-ja.html` | 커미션 안내 (일본어) | 日本語 |
 | `adoption-ja.html` | 분양 안내 (일본어) | 日本語 |
+| `pricing-ja.html` | 가격 안내 (일본어) — 같은 데이터, 일본어 표기 | 日本語 |
 | `admin.html` | 관리자 CMS (접수상태 · 공지 · 가격 · 이미지) | 한국어 · `noindex` |
 
 한국어 ↔ 일본어는 상단 내비의 `日本語` / `한국어` 스위치로 이동합니다.
@@ -96,26 +97,39 @@ npm run preview      # 빌드 결과 미리보기
 
 ## `data/pricing.json` 스키마
 
+이름·가격·안내문구는 **한국어(`name`/`price`/`note`) + 일본어(`nameJa`/
+`priceJa`/`noteJa`)** 를 함께 담습니다. 일본어 페이지는 일본어 값을 우선 쓰고,
+비어 있으면 한국어 값으로 자동 대체(fallback)합니다.
+
 ```jsonc
 {
-  "updatedAt": "2026-08-06",
+  "updatedAt": "2026-08-08",
   "status": "PREPARING",         // OPEN | CLOSED | PREPARING
   "announcement": "",            // 한국어 배너 문구 (비우면 기본/숨김)
   "announcementJa": "",          // 일본어 배너 문구
-  "note": "가격은 …",            // 가격 페이지 상단 안내
+  "note": "가격은 …",            // 가격 페이지 상단 안내 (한국어)
+  "noteJa": "料金は …",          // 가격 페이지 상단 안내 (일본어)
   "categories": [
     {
       "name": "코론타입 · LD 풀채색",
+      "nameJa": "コロンタイプ・LDフルカラー",
       "image": "./data/images/sample-koron.jpg",
-      "items": [{ "name": "전신", "price": "₩000,000" }]
+      "items": [
+        { "name": "전신", "nameJa": "全身", "price": "₩000,000", "priceJa": "0,000円〜" }
+      ]
     }
   ],
-  "options": [{ "name": "추가 캐릭터", "price": "+₩00,000" }]
+  "options": [
+    { "name": "추가 캐릭터", "nameJa": "人物追加", "price": "+₩00,000", "priceJa": "+0,000円〜" }
+  ]
 }
 ```
 
-`src/site-banner.js`가 `status`/`announcement`를 읽어 전 페이지 상단 배너와
-`[data-site-status]` 배지에 한/일 로컬라이즈하여 반영합니다.
+- `pricing.html`(한국어)는 `name`/`price`/`note`를, `pricing-ja.html`(일본어)는
+  `nameJa`/`priceJa`/`noteJa`(없으면 한국어)로 렌더링합니다.
+- 관리자 페이지에서 각 항목의 한국어/일본어 이름·가격을 한 화면에서 입력합니다.
+- `src/site-banner.js`가 `status`/`announcement`를 읽어 전 페이지 상단 배너와
+  `[data-site-status]` 배지에 한/일 로컬라이즈하여 반영합니다.
 
 ## 이미지 매핑 (페이지 일러스트)
 
